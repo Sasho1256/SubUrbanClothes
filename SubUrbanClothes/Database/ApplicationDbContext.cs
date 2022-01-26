@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SubUrbanClothes.Data
+namespace Database
 {
     public class ApplicationDbContext : IdentityDbContext
     {

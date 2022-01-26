@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
-namespace SubUrbanClothes.Data.Migrations
+namespace Database.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {
