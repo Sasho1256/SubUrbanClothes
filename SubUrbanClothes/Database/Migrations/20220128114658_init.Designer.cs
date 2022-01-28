@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Database.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220127112044_initial")]
-    partial class initial
+    [Migration("20220128114658_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -22,7 +22,8 @@ namespace Database.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(85)
+                        .HasColumnType("varchar(85)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -33,8 +34,8 @@ namespace Database.Migrations
                         .HasColumnType("varchar(256)");
 
                     b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)");
+                        .HasMaxLength(85)
+                        .HasColumnType("varchar(85)");
 
                     b.HasKey("Id");
 
@@ -49,6 +50,7 @@ namespace Database.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasMaxLength(85)
                         .HasColumnType("int");
 
                     b.Property<string>("ClaimType")
@@ -59,7 +61,8 @@ namespace Database.Migrations
 
                     b.Property<string>("RoleId")
                         .IsRequired()
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(85)
+                        .HasColumnType("varchar(85)");
 
                     b.HasKey("Id");
 
@@ -71,7 +74,8 @@ namespace Database.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(36)
+                        .HasColumnType("varchar(36)");
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
@@ -94,12 +98,12 @@ namespace Database.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)");
+                        .HasMaxLength(85)
+                        .HasColumnType("varchar(85)");
 
                     b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)");
+                        .HasMaxLength(85)
+                        .HasColumnType("varchar(85)");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("longtext");
@@ -136,6 +140,7 @@ namespace Database.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasMaxLength(85)
                         .HasColumnType("int");
 
                     b.Property<string>("ClaimType")
@@ -146,7 +151,8 @@ namespace Database.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(85)
+                        .HasColumnType("varchar(85)");
 
                     b.HasKey("Id");
 
@@ -158,17 +164,20 @@ namespace Database.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(85)
+                        .HasColumnType("varchar(85)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(85)
+                        .HasColumnType("varchar(85)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("longtext");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(85)
+                        .HasColumnType("varchar(85)");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -180,10 +189,12 @@ namespace Database.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(85)
+                        .HasColumnType("varchar(85)");
 
                     b.Property<string>("RoleId")
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(85)
+                        .HasColumnType("varchar(85)");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -195,13 +206,16 @@ namespace Database.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(85)
+                        .HasColumnType("varchar(85)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(85)
+                        .HasColumnType("varchar(85)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(85)
+                        .HasColumnType("varchar(85)");
 
                     b.Property<string>("Value")
                         .HasColumnType("longtext");

@@ -25,8 +25,6 @@ namespace SubUrbanClothes
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseMySql(this.Configuration.GetConnectionString("DefaultConnection"),
                     new MySqlServerVersion(new Version(8, 0, 22)), x => x.EnableRetryOnFailure()));
-            //options.UseSqlServer(
-            //        Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
