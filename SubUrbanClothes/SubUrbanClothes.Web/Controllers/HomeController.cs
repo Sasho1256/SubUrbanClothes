@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SubUrbanClothes.Models;
+using SubUrbanClothes.Web.Models;
 using System.Diagnostics;
 
-namespace SubUrbanClothes.Controllers
+namespace SubUrbanClothes.Web.Controllers
 {
     public class HomeController : Controller
     {

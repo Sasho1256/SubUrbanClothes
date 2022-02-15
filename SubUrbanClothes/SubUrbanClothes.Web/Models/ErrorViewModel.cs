@@ -1,4 +1,4 @@
-namespace SubUrbanClothes.Models
+namespace SubUrbanClothes.Web.Models
 {
     public class ErrorViewModel
     {
