@@ -12,7 +12,7 @@ using SubUrbanClothes.Database;
 namespace SubUrbanClothes.Database.Migrations
 {
     [DbContext(typeof(SubUrbanClothesDbContext))]
-    [Migration("20220215171141_init")]
+    [Migration("20220222193637_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
