@@ -13,6 +13,8 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-black border-bottom box-shadow mb-3">
             <div class="container-fluid">
+                <a href="/"><img id="logo" src="~/img/blue.png" alt="icon" /></a>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -20,17 +22,86 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a href="/"><img id="logo" src="~/img/blue.png" alt="icon" /></a>
-                            
+
                             <a id="navBarLable" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                class="navbar-brand nav-link" asp-area="" asp-controller="Home" asp-action="Index">
                                 SUBURBAN
                             </a>
 
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Link 1</a>
-                                <a class="dropdown-item" href="#">Link 2</a>
-                                <a class="dropdown-item" href="#">Link 3</a>
+                            <div class="dropdown-menu genders">
+                                <ul class="navbar-nav flex-grow-1">
+                                    <li class="nav-item">
+
+                                        <a href="/" style="font-weight:bold">Women</a>
+
+                                        <div class="dropdown-menu products" id="womensProducts">
+                                            <div class="clothes">
+                                                <ul>
+                                                    <li><a href="/" style="font-weight:bold">Clothes</a></li>
+                                                    <li><a href="/">T-Shirts</a></li>
+                                                    <li><a href="/">Hoodies</a></li>
+                                                    <li><a href="/">Shirts</a></li>
+                                                    <li><a href="/">Jackets</a></li>
+                                                    <li><a href="/">Pants</a></li>
+                                                    <li><a href="/">Shorts</a></li>
+                                                    <li><a href="/">Dresses</a></li>
+                                                    <li><a href="/">Skirts</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="clothes">
+                                                <ul>
+                                                    <li><a href="/" style="font-weight:bold">Shoes</a></li>
+                                                    <li><a href="/">Sneakers</a></li>
+                                                    <li><a href="/">Boots</a></li>
+                                                    <li><a href="/">Heels</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/" style="font-weight:bold">Men</a>
+
+                                        <div class="dropdown-menu products" id="mensProducts">
+                                            <div class="clothes">
+                                                <ul>
+                                                    <li><a href="/" style="font-weight:bold">Clothes</a></li>
+                                                    <li><a href="/">T-Shirts</a></li>
+                                                    <li><a href="/">Hoodies</a></li>
+                                                    <li><a href="/">Shirts</a></li>
+                                                    <li><a href="/">Jackets</a></li>
+                                                    <li><a href="/">Pants</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="clothes">
+                                                <ul>
+                                                    <li><a href="/" style="font-weight:bold">Shoes</a></li>
+                                                    <li><a href="/">Sneakers</a></li>
+                                                    <li><a href="/">Boots</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/" style="font-weight:bold">Children</a>
+
+                                        <div class="dropdown-menu products" id="childProducts">
+                                            <div class="clothes">
+                                                <ul>
+                                                    <li><a href="/" style="font-weight:bold">Clothes</a></li>
+                                                    <li><a href="/">T-Shirts</a></li>
+                                                    <li><a href="/">Hoodies</a></li>
+                                                    <li><a href="/">Jackets</a></li>
+                                                    <li><a href="/">Pants</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="clothes">
+                                                <ul>
+                                                    <li><a href="/" style="font-weight:bold">Shoes</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                         </li>
                     </ul>

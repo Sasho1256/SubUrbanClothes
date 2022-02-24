@@ -18,11 +18,7 @@ body {
     background: url("../img/graffiti1.jpg");
 }
 
-.navbar{
-    z-index:2;
-}
-
-.nav-item {
+.nav-item, dropdown-menu{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -30,7 +26,7 @@ body {
 
 #logo{
     height:50px;
-    margin:.5em;
+    margin:.6em;
 }
 
 #navBarLable {
@@ -39,6 +35,7 @@ body {
     font-weight: bolder;
     font-size: 40px;
     color: white;
+    padding:7px;
 }
 
 .nav-item:hover > .dropdown-menu {
@@ -49,19 +46,50 @@ body {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    top:5em;
-    left: 4em;
-    min-width: 500px;
+    margin-top:2px;
+    left: 0em;
+    width: 100%;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+}
+
+.products {
+    top: 4em;
+}
+
+#womensProducts {
+    background-color: #f0db74;
+}
+#mensProducts {
+    background-color: #29c2e9;
+}
+#childProducts {
+    background-color: #4bdd4e;
+}
+
+.genders {
+    top: 5em;
 }
 
 .dropdown-menu a {
     float: none;
-    color: black;
-    padding: 12px 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    padding: 14px 16px;
     text-decoration: none;
     display: block;
     text-align: left;
+    color: black !important;
 }
 
+.dropdown-menu a:hover {
+    text-decoration: underline;
+}
+
+.dropdown-menu ul {
+    list-style-type: none;
+}
+
+.clothes {
+    display: inline-block;
+    vertical-align: top;
+}
