@@ -49,6 +49,58 @@ namespace SubUrbanClothes.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Brands",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Brands", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Categories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Colors",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Colors", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Genders",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Genders", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -154,6 +206,84 @@ namespace SubUrbanClothes.Database.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Clothes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Size = table.Column<double>(type: "float", nullable: false),
+                    Brand_Id = table.Column<int>(type: "int", nullable: true),
+                    Color_Id = table.Column<int>(type: "int", nullable: true),
+                    Category_Id = table.Column<int>(type: "int", nullable: true),
+                    Gender_Id = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Clothes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Clothes_Brands_Brand_Id",
+                        column: x => x.Brand_Id,
+                        principalTable: "Brands",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Clothes_Categories_Category_Id",
+                        column: x => x.Category_Id,
+                        principalTable: "Categories",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Clothes_Colors_Color_Id",
+                        column: x => x.Color_Id,
+                        principalTable: "Colors",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Clothes_Genders_Gender_Id",
+                        column: x => x.Gender_Id,
+                        principalTable: "Genders",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Shoes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Size = table.Column<double>(type: "float", nullable: false),
+                    Brand_Id = table.Column<int>(type: "int", nullable: true),
+                    Color_Id = table.Column<int>(type: "int", nullable: true),
+                    Category_Id = table.Column<int>(type: "int", nullable: true),
+                    Gender_Id = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Shoes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Shoes_Brands_Brand_Id",
+                        column: x => x.Brand_Id,
+                        principalTable: "Brands",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Shoes_Categories_Category_Id",
+                        column: x => x.Category_Id,
+                        principalTable: "Categories",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Shoes_Colors_Color_Id",
+                        column: x => x.Color_Id,
+                        principalTable: "Colors",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Shoes_Genders_Gender_Id",
+                        column: x => x.Gender_Id,
+                        principalTable: "Genders",
+                        principalColumn: "Id");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -192,6 +322,70 @@ namespace SubUrbanClothes.Database.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Brands_Name",
+                table: "Brands",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Categories_Name",
+                table: "Categories",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Clothes_Brand_Id",
+                table: "Clothes",
+                column: "Brand_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Clothes_Category_Id",
+                table: "Clothes",
+                column: "Category_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Clothes_Color_Id",
+                table: "Clothes",
+                column: "Color_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Clothes_Gender_Id",
+                table: "Clothes",
+                column: "Gender_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Colors_Name",
+                table: "Colors",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Genders_Name",
+                table: "Genders",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Shoes_Brand_Id",
+                table: "Shoes",
+                column: "Brand_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Shoes_Category_Id",
+                table: "Shoes",
+                column: "Category_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Shoes_Color_Id",
+                table: "Shoes",
+                column: "Color_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Shoes_Gender_Id",
+                table: "Shoes",
+                column: "Gender_Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -212,10 +406,28 @@ namespace SubUrbanClothes.Database.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Clothes");
+
+            migrationBuilder.DropTable(
+                name: "Shoes");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Brands");
+
+            migrationBuilder.DropTable(
+                name: "Categories");
+
+            migrationBuilder.DropTable(
+                name: "Colors");
+
+            migrationBuilder.DropTable(
+                name: "Genders");
         }
     }
 }
