@@ -24,9 +24,18 @@ body {
     justify-content: center;
 }
 
-#logo{
+#bLogo, #yLogo{
     height:50px;
     margin:.6em;
+}
+
+#bLogo {
+    position:absolute;
+    left: .75rem;
+}
+
+#bLogo:hover{
+    opacity:0%;
 }
 
 #navBarLable {
