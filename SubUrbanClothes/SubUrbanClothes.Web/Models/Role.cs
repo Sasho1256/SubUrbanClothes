@@ -1,0 +1,4 @@
+﻿namespace SubUrbanClothes.Web.Models
+{
+
+}

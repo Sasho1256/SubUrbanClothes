@@ -26,4 +26,8 @@
     <ProjectReference Include="..\SubUrbanClothes.Database\SubUrbanClothes.Database.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\Contracts\" />
+  </ItemGroup>
+
 </Project>
