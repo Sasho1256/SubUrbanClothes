@@ -12,7 +12,7 @@ using SubUrbanClothes.Database;
 namespace SubUrbanClothes.Database.Migrations
 {
     [DbContext(typeof(SubUrbanClothesDbContext))]
-    [Migration("20220226162804_init")]
+    [Migration("20220227094643_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -246,6 +246,34 @@ namespace SubUrbanClothes.Database.Migrations
                     b.ToTable("Brands");
                 });
 
+            modelBuilder.Entity("SubUrbanClothes.Database.CartItem", b =>
+                {
+                    b.Property<string>("ItemId")
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnName("Item_Id");
+
+                    b.Property<string>("CartId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Cart_Id");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int")
+                        .HasColumnName("Product_Id");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("ItemId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ShoppingCartItems");
+                });
+
             modelBuilder.Entity("SubUrbanClothes.Database.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -264,53 +292,6 @@ namespace SubUrbanClothes.Database.Migrations
                         .IsUnique();
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("SubUrbanClothes.Database.Clothing", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int?>("Brand_Id")
-                        .HasColumnType("int")
-                        .HasColumnName("Brand_Id");
-
-                    b.Property<int?>("Category_Id")
-                        .HasColumnType("int")
-                        .HasColumnName("Category_Id");
-
-                    b.Property<int?>("Color_Id")
-                        .HasColumnType("int")
-                        .HasColumnName("Color_Id");
-
-                    b.Property<int?>("Gender_Id")
-                        .HasColumnType("int")
-                        .HasColumnName("Gender_Id");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<double>("Size")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Brand_Id");
-
-                    b.HasIndex("Category_Id");
-
-                    b.HasIndex("Color_Id");
-
-                    b.HasIndex("Gender_Id");
-
-                    b.ToTable("Clothes");
                 });
 
             modelBuilder.Entity("SubUrbanClothes.Database.Color", b =>
@@ -353,7 +334,7 @@ namespace SubUrbanClothes.Database.Migrations
                     b.ToTable("Genders");
                 });
 
-            modelBuilder.Entity("SubUrbanClothes.Database.Shoe", b =>
+            modelBuilder.Entity("SubUrbanClothes.Database.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -361,19 +342,23 @@ namespace SubUrbanClothes.Database.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("Brand_Id")
+                    b.Property<int?>("BrandId")
+                        .IsRequired()
                         .HasColumnType("int")
                         .HasColumnName("Brand_Id");
 
-                    b.Property<int?>("Category_Id")
+                    b.Property<int?>("CategoryId")
+                        .IsRequired()
                         .HasColumnType("int")
                         .HasColumnName("Category_Id");
 
-                    b.Property<int?>("Color_Id")
+                    b.Property<int?>("ColorId")
+                        .IsRequired()
                         .HasColumnType("int")
                         .HasColumnName("Color_Id");
 
-                    b.Property<int?>("Gender_Id")
+                    b.Property<int?>("GenderId")
+                        .IsRequired()
                         .HasColumnType("int")
                         .HasColumnName("Gender_Id");
 
@@ -381,23 +366,30 @@ namespace SubUrbanClothes.Database.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<string>("ProductType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<double>("Size")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Brand_Id");
+                    b.HasIndex("BrandId");
 
-                    b.HasIndex("Category_Id");
+                    b.HasIndex("CategoryId");
 
-                    b.HasIndex("Color_Id");
+                    b.HasIndex("ColorId");
 
-                    b.HasIndex("Gender_Id");
+                    b.HasIndex("GenderId");
 
-                    b.ToTable("Shoes");
+                    b.HasIndex("ProductType")
+                        .IsUnique();
+
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -451,50 +443,42 @@ namespace SubUrbanClothes.Database.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SubUrbanClothes.Database.Clothing", b =>
+            modelBuilder.Entity("SubUrbanClothes.Database.CartItem", b =>
                 {
-                    b.HasOne("SubUrbanClothes.Database.Brand", "Brand")
+                    b.HasOne("SubUrbanClothes.Database.Product", "Product")
                         .WithMany()
-                        .HasForeignKey("Brand_Id");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SubUrbanClothes.Database.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("Category_Id");
-
-                    b.HasOne("SubUrbanClothes.Database.Color", "Color")
-                        .WithMany()
-                        .HasForeignKey("Color_Id");
-
-                    b.HasOne("SubUrbanClothes.Database.Gender", "Gender")
-                        .WithMany()
-                        .HasForeignKey("Gender_Id");
-
-                    b.Navigation("Brand");
-
-                    b.Navigation("Category");
-
-                    b.Navigation("Color");
-
-                    b.Navigation("Gender");
+                    b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("SubUrbanClothes.Database.Shoe", b =>
+            modelBuilder.Entity("SubUrbanClothes.Database.Product", b =>
                 {
                     b.HasOne("SubUrbanClothes.Database.Brand", "Brand")
                         .WithMany()
-                        .HasForeignKey("Brand_Id");
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("SubUrbanClothes.Database.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("Category_Id");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("SubUrbanClothes.Database.Color", "Color")
                         .WithMany()
-                        .HasForeignKey("Color_Id");
+                        .HasForeignKey("ColorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("SubUrbanClothes.Database.Gender", "Gender")
                         .WithMany()
-                        .HasForeignKey("Gender_Id");
+                        .HasForeignKey("GenderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Brand");
 

@@ -207,81 +207,68 @@ namespace SubUrbanClothes.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Clothes",
+                name: "Products",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false),
                     Size = table.Column<double>(type: "float", nullable: false),
-                    Brand_Id = table.Column<int>(type: "int", nullable: true),
-                    Color_Id = table.Column<int>(type: "int", nullable: true),
-                    Category_Id = table.Column<int>(type: "int", nullable: true),
-                    Gender_Id = table.Column<int>(type: "int", nullable: true)
+                    ProductType = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Brand_Id = table.Column<int>(type: "int", nullable: false),
+                    Color_Id = table.Column<int>(type: "int", nullable: false),
+                    Category_Id = table.Column<int>(type: "int", nullable: false),
+                    Gender_Id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Clothes", x => x.Id);
+                    table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Clothes_Brands_Brand_Id",
+                        name: "FK_Products_Brands_Brand_Id",
                         column: x => x.Brand_Id,
                         principalTable: "Brands",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Clothes_Categories_Category_Id",
+                        name: "FK_Products_Categories_Category_Id",
                         column: x => x.Category_Id,
                         principalTable: "Categories",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Clothes_Colors_Color_Id",
+                        name: "FK_Products_Colors_Color_Id",
                         column: x => x.Color_Id,
                         principalTable: "Colors",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Clothes_Genders_Gender_Id",
+                        name: "FK_Products_Genders_Gender_Id",
                         column: x => x.Gender_Id,
                         principalTable: "Genders",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Shoes",
+                name: "ShoppingCartItems",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Size = table.Column<double>(type: "float", nullable: false),
-                    Brand_Id = table.Column<int>(type: "int", nullable: true),
-                    Color_Id = table.Column<int>(type: "int", nullable: true),
-                    Category_Id = table.Column<int>(type: "int", nullable: true),
-                    Gender_Id = table.Column<int>(type: "int", nullable: true)
+                    Item_Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Cart_Id = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Product_Id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Shoes", x => x.Id);
+                    table.PrimaryKey("PK_ShoppingCartItems", x => x.Item_Id);
                     table.ForeignKey(
-                        name: "FK_Shoes_Brands_Brand_Id",
-                        column: x => x.Brand_Id,
-                        principalTable: "Brands",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Shoes_Categories_Category_Id",
-                        column: x => x.Category_Id,
-                        principalTable: "Categories",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Shoes_Colors_Color_Id",
-                        column: x => x.Color_Id,
-                        principalTable: "Colors",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Shoes_Genders_Gender_Id",
-                        column: x => x.Gender_Id,
-                        principalTable: "Genders",
-                        principalColumn: "Id");
+                        name: "FK_ShoppingCartItems_Products_Product_Id",
+                        column: x => x.Product_Id,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -336,26 +323,6 @@ namespace SubUrbanClothes.Database.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Clothes_Brand_Id",
-                table: "Clothes",
-                column: "Brand_Id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Clothes_Category_Id",
-                table: "Clothes",
-                column: "Category_Id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Clothes_Color_Id",
-                table: "Clothes",
-                column: "Color_Id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Clothes_Gender_Id",
-                table: "Clothes",
-                column: "Gender_Id");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Colors_Name",
                 table: "Colors",
                 column: "Name",
@@ -368,24 +335,35 @@ namespace SubUrbanClothes.Database.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Shoes_Brand_Id",
-                table: "Shoes",
+                name: "IX_Products_Brand_Id",
+                table: "Products",
                 column: "Brand_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Shoes_Category_Id",
-                table: "Shoes",
+                name: "IX_Products_Category_Id",
+                table: "Products",
                 column: "Category_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Shoes_Color_Id",
-                table: "Shoes",
+                name: "IX_Products_Color_Id",
+                table: "Products",
                 column: "Color_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Shoes_Gender_Id",
-                table: "Shoes",
+                name: "IX_Products_Gender_Id",
+                table: "Products",
                 column: "Gender_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_ProductType",
+                table: "Products",
+                column: "ProductType",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShoppingCartItems_Product_Id",
+                table: "ShoppingCartItems",
+                column: "Product_Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -406,16 +384,16 @@ namespace SubUrbanClothes.Database.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Clothes");
-
-            migrationBuilder.DropTable(
-                name: "Shoes");
+                name: "ShoppingCartItems");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Brands");

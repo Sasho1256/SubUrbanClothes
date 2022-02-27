@@ -15,12 +15,12 @@ namespace SubUrbanClothes.Database
         }
 
         //dbsets
-        public DbSet<Clothing> Clothes { get; set; }
-        public DbSet<Shoe> Shoes { get; set; }
+        public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Gender> Genders { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Color> Colors { get; set; }
+        public DbSet<CartItem> ShoppingCartItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -40,6 +40,10 @@ namespace SubUrbanClothes.Database
 
             builder.Entity<Color>()
                 .HasIndex(x => x.Name)
+                .IsUnique();
+
+            builder.Entity<Product>()
+                .HasIndex(x => x.ProductType)
                 .IsUnique();
         }
     }
