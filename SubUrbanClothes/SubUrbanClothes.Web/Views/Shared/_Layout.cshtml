@@ -3,16 +3,21 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - SubUrbanClothes.Web</title>
+    <title>@ViewData["Title"]</title>
+    <link rel="shortcut icon" type="image/x-icon" href="~/img/blue.png" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/SubUrbanClothes.Web.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-black border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SubUrbanClothes.Web</a>
+                <div>
+                    <a href="/"><img id="bLogo" src="~/img/blue.png" alt="icon" /></a>
+                    <a href="/"><img id="yLogo" src="~/img/yellow.png" alt="icon" /></a>
+                </div>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -20,10 +25,87 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
+                            <a id="navBarLable" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                               class="navbar-brand nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+                                SUBURBAN
+                            </a>
+
+                            <div class="dropdown-menu genders">
+                                <ul class="navbar-nav flex-grow-1">
+                                    <li class="nav-item">
+
+                                        <a href="/" style="font-weight:bold">Women</a>
+
+                                        <div class="dropdown-menu products" id="womensProducts">
+                                            <div class="clothes">
+                                                <ul>
+                                                    <li><a href="/" style="font-weight:bold">Clothes</a></li>
+                                                    <li><a href="/">T-Shirts</a></li>
+                                                    <li><a href="/">Hoodies</a></li>
+                                                    <li><a href="/">Shirts</a></li>
+                                                    <li><a href="/">Jackets</a></li>
+                                                    <li><a href="/">Pants</a></li>
+                                                    <li><a href="/">Shorts</a></li>
+                                                    <li><a href="/">Dresses</a></li>
+                                                    <li><a href="/">Skirts</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="clothes">
+                                                <ul>
+                                                    <li><a href="/" style="font-weight:bold">Shoes</a></li>
+                                                    <li><a href="/">Sneakers</a></li>
+                                                    <li><a href="/">Boots</a></li>
+                                                    <li><a href="/">Heels</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/" style="font-weight:bold">Men</a>
+
+                                        <div class="dropdown-menu products" id="mensProducts">
+                                            <div class="clothes">
+                                                <ul>
+                                                    <li><a href="/" style="font-weight:bold">Clothes</a></li>
+                                                    <li><a href="/">T-Shirts</a></li>
+                                                    <li><a href="/">Hoodies</a></li>
+                                                    <li><a href="/">Shirts</a></li>
+                                                    <li><a href="/">Jackets</a></li>
+                                                    <li><a href="/">Pants</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="clothes">
+                                                <ul>
+                                                    <li><a href="/" style="font-weight:bold">Shoes</a></li>
+                                                    <li><a href="/">Sneakers</a></li>
+                                                    <li><a href="/">Boots</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/" style="font-weight:bold">Children</a>
+
+                                        <div class="dropdown-menu products" id="childProducts">
+                                            <div class="clothes">
+                                                <ul>
+                                                    <li><a href="/" style="font-weight:bold">Clothes</a></li>
+                                                    <li><a href="/">T-Shirts</a></li>
+                                                    <li><a href="/">Hoodies</a></li>
+                                                    <li><a href="/">Jackets</a></li>
+                                                    <li><a href="/">Pants</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="clothes">
+                                                <ul>
+                                                    <li><a href="/" style="font-weight:bold">Shoes</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
@@ -39,7 +121,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - SubUrbanClothes.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2022 - SUBURBAN
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

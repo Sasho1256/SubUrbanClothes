@@ -14,5 +14,91 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background: url("../img/graffiti1.jpg");
+}
+
+.nav-item, dropdown-menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#bLogo, #yLogo{
+    height:50px;
+    margin:.6em;
+}
+
+#bLogo {
+    position:absolute;
+    left: .75rem;
+}
+
+#bLogo:hover{
+    opacity:0%;
+}
+
+#navBarLable {
+    position:relative;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    font-size: 40px;
+    color: white;
+    padding:7px;
+}
+
+.nav-item:hover > .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    margin-top:2px;
+    left: 0em;
+    width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.products {
+    top: 4em;
+}
+
+#womensProducts {
+    background-color: #f0db74;
+}
+#mensProducts {
+    background-color: #29c2e9;
+}
+#childProducts {
+    background-color: #4bdd4e;
+}
+
+.genders {
+    top: 5em;
+}
+
+.dropdown-menu a {
+    float: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    padding: 14px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    color: black !important;
+}
+
+.dropdown-menu a:hover {
+    text-decoration: underline;
+}
+
+.dropdown-menu ul {
+    list-style-type: none;
+}
+
+.clothes {
+    display: inline-block;
+    vertical-align: top;
 }
