@@ -38,6 +38,10 @@ body {
     opacity:0%;
 }
 
+#cartLogo{
+    height:50px;
+}
+
 #navBarLable {
     position:relative;
     font-family: Arial, Helvetica, sans-serif;

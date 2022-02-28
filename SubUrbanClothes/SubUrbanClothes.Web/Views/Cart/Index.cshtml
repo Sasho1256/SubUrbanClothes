@@ -1,0 +1,28 @@
+﻿@using SubUrbanClothes.Database
+@model List<CartItem>
+@{
+    ViewData["Title"] = "Shopping Cart";
+}
+
+<div>
+    <ul style="background-color:white">
+        @if (Model == null)
+        {
+            <h3>Cart is empty.</h3>
+        }
+        else
+        {
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <li>@Model[i].Product.Name</li>
+            }
+        }
+    </ul>
+</div>
+
+@*<ul style="background-color:white">
+    @for (int i = 0; i < 10; i++)
+    {
+        <li>asdasdasd</li>
+    }
+</ul>*@

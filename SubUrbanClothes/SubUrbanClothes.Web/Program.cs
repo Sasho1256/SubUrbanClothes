@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SubUrbanClothes.Database;
+using SubUrbanClothes.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,8 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<SubUrbanClothesDbContext>();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddTransient<ICartService, CartService>();
 
 var app = builder.Build();
 

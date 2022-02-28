@@ -1,10 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-SubUrbanClothes.Web-227E909C-65A8-4CAD-A2E2-D35EBDEB3B53</UserSecretsId>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,7 +23,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SubUrbanClothes.Database\SubUrbanClothes.Database.csproj" />
-    <ProjectReference Include="..\SubUrbanClothes.Services\SubUrbanClothes.Services.csproj" />
   </ItemGroup>
 
 </Project>
