@@ -1,0 +1,46 @@
+﻿/*body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}*/
+
+.genderDividers {
+    background-color: #c1c2c1;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: .5rem;
+    align-items: center;
+    border-radius: 15px;
+}
+
+    .genderDividers h4 {
+        margin-top:.25em;
+        text-align: center;
+    }
+
+    .genderDividers a {
+        text-decoration: none;
+        color: black !important;
+    }
+
+        .genderDividers a:hover {
+            text-decoration: underline;
+        }
+
+.productDivs {
+}
+
+.productLists {
+    list-style-type: none;
+}
+
+.productItems {
+    background-color: #e6e6e6;
+    padding: .5rem;
+    margin-top: 1em;
+    width:9em;
+    height: 12em;
+    border-radius: 15px;
+    display: inline-block;
+}
