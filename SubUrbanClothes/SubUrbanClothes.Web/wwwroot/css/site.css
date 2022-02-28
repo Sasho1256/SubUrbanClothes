@@ -1,16 +1,16 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
@@ -18,37 +18,37 @@ body {
     background: url("../img/graffiti1.jpg");
 }
 
-.nav-item, dropdown-menu{
+.nav-item, dropdown-menu {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
-#bLogo, #yLogo{
-    height:50px;
-    margin:.6em;
+#bLogo, #yLogo {
+    height: 40px;
 }
 
 #bLogo {
-    position:absolute;
+    position: absolute;
     left: .75rem;
 }
 
-#bLogo:hover{
-    opacity:0%;
-}
+    #bLogo:hover {
+        opacity: 0%;
+    }
 
-#cartLogo{
-    height:50px;
+#cartLogo {
+    height: 35px;
 }
 
 #navBarLable {
-    position:relative;
+    position: relative;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bolder;
-    font-size: 40px;
+    font-size: 31px;
     color: white;
-    padding:7px;
+    padding: 11px;
+    margin-top: 3px;
 }
 
 .nav-item:hover > .dropdown-menu {
@@ -59,22 +59,24 @@ body {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    margin-top:2px;
+    margin-top: 0px;
     left: 0em;
     width: 100%;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 .products {
-    top: 4em;
+    top: 2.8em;
 }
 
 #womensProducts {
     background-color: #f0db74;
 }
+
 #mensProducts {
     background-color: #29c2e9;
 }
+
 #childProducts {
     background-color: #4bdd4e;
 }
@@ -86,17 +88,17 @@ body {
 .dropdown-menu a {
     float: none;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-    padding: 14px 16px;
+    font-size: 16px;
+    padding: 7px 10px;
     text-decoration: none;
     display: block;
     text-align: left;
     color: black !important;
 }
 
-.dropdown-menu a:hover {
-    text-decoration: underline;
-}
+    .dropdown-menu a:hover {
+        text-decoration: underline;
+    }
 
 .dropdown-menu ul {
     list-style-type: none;
