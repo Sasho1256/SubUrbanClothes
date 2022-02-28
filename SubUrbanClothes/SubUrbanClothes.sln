@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubUrbanClothes.Web", "SubUrbanClothes.Web\SubUrbanClothes.Web.csproj", "{EB38534E-9ACE-4E2A-9FEE-C4300699170E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SubUrbanClothes.Web", "SubUrbanClothes.Web\SubUrbanClothes.Web.csproj", "{EB38534E-9ACE-4E2A-9FEE-C4300699170E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubUrbanClothes.Database", "SubUrbanClothes.Database\SubUrbanClothes.Database.csproj", "{330E7BCE-038A-4C6D-8C31-D4CE49A77B18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SubUrbanClothes.Database", "SubUrbanClothes.Database\SubUrbanClothes.Database.csproj", "{330E7BCE-038A-4C6D-8C31-D4CE49A77B18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubUrbanClothes.Services", "SubUrbanClothes.Services\SubUrbanClothes.Services.csproj", "{C9B382E1-3FB7-4F52-9D09-589F3A1F163F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{330E7BCE-038A-4C6D-8C31-D4CE49A77B18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{330E7BCE-038A-4C6D-8C31-D4CE49A77B18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{330E7BCE-038A-4C6D-8C31-D4CE49A77B18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9B382E1-3FB7-4F52-9D09-589F3A1F163F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9B382E1-3FB7-4F52-9D09-589F3A1F163F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9B382E1-3FB7-4F52-9D09-589F3A1F163F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9B382E1-3FB7-4F52-9D09-589F3A1F163F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
