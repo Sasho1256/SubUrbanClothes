@@ -2,7 +2,7 @@
 
 namespace SubUrbanClothes.Web.Controllers
 {
-    public class ProductController : Controller
+    public class ProductListController : Controller
     {
         public IActionResult Index()
         {
