@@ -18,7 +18,7 @@ namespace SubUrbanClothes.Web.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult ContactUs()
         {
             return View();
         }
