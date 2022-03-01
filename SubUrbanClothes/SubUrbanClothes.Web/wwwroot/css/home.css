@@ -4,6 +4,10 @@
     justify-content: center;
 }*/
 
+#allDiv{
+    margin-top:6em;
+}
+
 .genderDividers {
     background-color: #c1c2c1;
     width: 100%;

@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Products";
+}
+<head>
+    <link rel="stylesheet" href="~/css/productList.css" asp-append-version="true" />
+</head>
+
+<!-- Control buttons -->
+<div id="myBtnContainer" class="sidenav">
+  <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+  <br>
+  <button class="btn" onclick="filterSelection('cars')"> Cars</button>
+  <br>
+  <button class="btn" onclick="filterSelection('animals')"> Animals</button>
+  <br>
+  <button class="btn" onclick="filterSelection('fruits')"> Fruits</button>
+  <br>
+  <button class="btn" onclick="filterSelection('colors')"> Colors</button>
+</div>
+
+<!-- The filterable elements. Note that some have multiple class names (this can be used if they belong to multiple categories) -->
+<div class="myContainer">
+  <div class="filterDiv cars">BMW</div>
+  <div class="filterDiv colors fruits">Orange</div>
+  <div class="filterDiv cars">Volvo</div>
+  <div class="filterDiv colors">Red</div>
+  <div class="filterDiv cars animals">Mustang</div>
+  <div class="filterDiv colors">Blue</div>
+  <div class="filterDiv animals">Cat</div>
+  <div class="filterDiv animals">Dog</div>
+  <div class="filterDiv fruits">Melon</div>
+  <div class="filterDiv fruits animals">Kiwi</div>
+  <div class="filterDiv fruits">Banana</div>
+  <div class="filterDiv fruits">Lemon</div>
+  <div class="filterDiv animals">Cow</div>
+</div>
+
+<script src="~/js/productList.js" asp-append-version="true"></script>

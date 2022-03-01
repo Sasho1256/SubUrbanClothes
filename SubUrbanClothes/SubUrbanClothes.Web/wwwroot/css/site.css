@@ -18,6 +18,12 @@ body {
     background: url("../img/graffiti1.jpg");
 }
 
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
 .nav-item, dropdown-menu {
     display: flex;
     flex-direction: row;

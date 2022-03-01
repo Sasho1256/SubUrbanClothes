@@ -11,7 +11,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-black border-bottom box-shadow mb-3">
+        <nav id="navbar" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-black border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <div>
                     <a href="/"><img id="bLogo" src="~/img/blue.png" alt="icon" /></a>
@@ -35,71 +35,71 @@
                                 <ul class="navbar-nav flex-grow-1">
                                     <li class="nav-item">
 
-                                        <a href="/" style="font-weight:bold">Women</a>
+                                        <a asp-controller="ProductList" asp-action="Index" style="font-weight:bold">Women</a>
 
                                         <div class="dropdown-menu products" id="womensProducts">
                                             <div class="clothes">
                                                 <ul>
-                                                    <li><a href="/" style="font-weight:bold">Clothes</a></li>
-                                                    <li><a href="/">T-Shirts</a></li>
-                                                    <li><a href="/">Hoodies</a></li>
-                                                    <li><a href="/">Shirts</a></li>
-                                                    <li><a href="/">Jackets</a></li>
-                                                    <li><a href="/">Pants</a></li>
-                                                    <li><a href="/">Shorts</a></li>
-                                                    <li><a href="/">Dresses</a></li>
-                                                    <li><a href="/">Skirts</a></li>
+                                                    <li><a asp-controller="ProductList" asp-action="Index" style="font-weight:bold">Clothes</a></li>
+                                                    <li><a asp-controller="ProductList" asp-action="Index">T-Shirts</a></li>
+                                                    <li><a asp-controller="ProductList" asp-action="Index">Hoodies</a></li>
+                                                    <li><a asp-controller="ProductList" asp-action="Index">Shirts</a></li>
+                                                    <li><a asp-controller="ProductList" asp-action="Index">Jackets</a></li>
+                                                    <li><a asp-controller="ProductList" asp-action="Index">Pants</a></li>
+                                                    <li><a asp-controller="ProductList" asp-action="Index">Shorts</a></li>
+                                                    <li><a asp-controller="ProductList" asp-action="Index">Dresses</a></li>
+                                                    <li><a asp-controller="ProductList" asp-action="Index">Skirts</a></li>
                                                 </ul>
                                             </div>
                                             <div class="clothes">
                                                 <ul>
-                                                    <li><a href="/" style="font-weight:bold">Shoes</a></li>
-                                                    <li><a href="/">Sneakers</a></li>
-                                                    <li><a href="/">Boots</a></li>
-                                                    <li><a href="/">Heels</a></li>
+                                                    <li><a asp-controller="ProductList" asp-action="Index" style="font-weight:bold">Shoes</a></li>
+                                                    <li><a asp-controller="ProductList" asp-action="Index">Sneakers</a></li>
+                                                    <li><a asp-controller="ProductList" asp-action="Index">Boots</a></li>
+                                                    <li><a asp-controller="ProductList" asp-action="Index">Heels</a></li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="/" style="font-weight:bold">Men</a>
+                                        <a asp-controller="ProductList" asp-action="Index" style="font-weight:bold">Men</a>
 
                                         <div class="dropdown-menu products" id="mensProducts">
                                             <div class="clothes">
                                                 <ul>
-                                                    <li><a href="/" style="font-weight:bold">Clothes</a></li>
-                                                    <li><a href="/">T-Shirts</a></li>
-                                                    <li><a href="/">Hoodies</a></li>
-                                                    <li><a href="/">Shirts</a></li>
-                                                    <li><a href="/">Jackets</a></li>
-                                                    <li><a href="/">Pants</a></li>
+                                                    <li><a asp-controller="ProductList" asp-action="Index" style="font-weight:bold">Clothes</a></li>
+                                                    <li><a asp-controller="ProductList" asp-action="Index">T-Shirts</a></li>
+                                                    <li><a asp-controller="ProductList" asp-action="Index">Hoodies</a></li>
+                                                    <li><a asp-controller="ProductList" asp-action="Index">Shirts</a></li>
+                                                    <li><a asp-controller="ProductList" asp-action="Index">Jackets</a></li>
+                                                    <li><a asp-controller="ProductList" asp-action="Index">Pants</a></li>
                                                 </ul>
                                             </div>
                                             <div class="clothes">
                                                 <ul>
-                                                    <li><a href="/" style="font-weight:bold">Shoes</a></li>
-                                                    <li><a href="/">Sneakers</a></li>
-                                                    <li><a href="/">Boots</a></li>
+                                                    <li><a asp-controller="ProductList" asp-action="Index" style="font-weight:bold">Shoes</a></li>
+                                                    <li><a asp-controller="ProductList" asp-action="Index">Sneakers</a></li>
+                                                    <li><a asp-controller="ProductList" asp-action="Index">Boots</a></li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="/" style="font-weight:bold">Children</a>
+                                        <a asp-controller="ProductList" asp-action="Index" style="font-weight:bold">Children</a>
 
                                         <div class="dropdown-menu products" id="childProducts">
                                             <div class="clothes">
                                                 <ul>
-                                                    <li><a href="/" style="font-weight:bold">Clothes</a></li>
-                                                    <li><a href="/">T-Shirts</a></li>
-                                                    <li><a href="/">Hoodies</a></li>
-                                                    <li><a href="/">Jackets</a></li>
-                                                    <li><a href="/">Pants</a></li>
+                                                    <li><a asp-controller="ProductList" asp-action="Index" style="font-weight:bold">Clothes</a></li>
+                                                    <li><a asp-controller="ProductList" asp-action="Index">T-Shirts</a></li>
+                                                    <li><a asp-controller="ProductList" asp-action="Index">Hoodies</a></li>
+                                                    <li><a asp-controller="ProductList" asp-action="Index">Jackets</a></li>
+                                                    <li><a asp-controller="ProductList" asp-action="Index">Pants</a></li>
                                                 </ul>
                                             </div>
                                             <div class="clothes">
                                                 <ul>
-                                                    <li><a href="/" style="font-weight:bold">Shoes</a></li>
+                                                    <li><a asp-controller="ProductList" asp-action="Index" style="font-weight:bold">Shoes</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -123,6 +123,9 @@
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2022 - SUBURBAN
+        </div>
+        <div>
+            <a style="text-decoration: none; margin-right: 3em; color: white !important;"  asp-controller="Home" asp-action="ContactUs">Contact Us</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
