@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<Product>
+@{
     ViewData["Title"] = "Products";
 }
 <head>
@@ -7,32 +8,48 @@
 
 <!-- Control buttons -->
 <div id="myBtnContainer" class="sidenav">
-  <button class="btn active" onclick="filterSelection('all')"> Show all</button>
-  <br>
-  <button class="btn" onclick="filterSelection('cars')"> Cars</button>
-  <br>
-  <button class="btn" onclick="filterSelection('animals')"> Animals</button>
-  <br>
-  <button class="btn" onclick="filterSelection('fruits')"> Fruits</button>
-  <br>
-  <button class="btn" onclick="filterSelection('colors')"> Colors</button>
+    <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+    @{
+        if (Model != null)
+        {
+            var products = Model;
+            for (int i = 0; i < Model.Count; i++)
+            {
+                <br>
+                <button class="btn" onclick="filterSelection('@products[i].Gender.Name')"> @products[i].Gender.Name</button>
+            }
+            for (int i = 0; i < products.Count; i++)
+            {
+                <br>
+                <button class="btn" onclick="filterSelection('@products[i].Brand.Name')"> @products[i].ProductType</button>
+            }
+            for (int i = 0; i < products.Count; i++)
+            {
+                <br>
+                <button class="btn" onclick="filterSelection('@products[i].Category.Name')"> @products[i].Category.Name</button>
+            }
+            for (int i = 0; i < products.Count; i++)
+            {
+                <br>
+                <button class="btn" onclick="filterSelection('@products[i].Brand.Name')"> @products[i].Brand.Name</button>
+            }
+        }
+    }
+
 </div>
 
 <!-- The filterable elements. Note that some have multiple class names (this can be used if they belong to multiple categories) -->
 <div class="myContainer">
-  <div class="filterDiv cars">BMW</div>
-  <div class="filterDiv colors fruits">Orange</div>
-  <div class="filterDiv cars">Volvo</div>
-  <div class="filterDiv colors">Red</div>
-  <div class="filterDiv cars animals">Mustang</div>
-  <div class="filterDiv colors">Blue</div>
-  <div class="filterDiv animals">Cat</div>
-  <div class="filterDiv animals">Dog</div>
-  <div class="filterDiv fruits">Melon</div>
-  <div class="filterDiv fruits animals">Kiwi</div>
-  <div class="filterDiv fruits">Banana</div>
-  <div class="filterDiv fruits">Lemon</div>
-  <div class="filterDiv animals">Cow</div>
+    @{
+        if (Model != null)
+        {
+            var products = Model;
+            for (int i = 0; i < products.Count; i++)
+            {
+                <div class="filterDiv @products[i].Gender.Name @products[i].ProductType @products[i].Category.Name @products[i].Color.Name @products[i].Brand.Name">@products[i].Name</div>
+            }
+        }
+    }
 </div>
 
 <script src="~/js/productList.js" asp-append-version="true"></script>
