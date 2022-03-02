@@ -1,19 +1,25 @@
-﻿using SubUrbanClothes.Web.Models;
+﻿using SubUrbanClothes.Database;
 using SubUrbanClothes.Web.Services.Contracts;
 
 namespace SubUrbanClothes.Web.Services
 {
     public class BrandService : IBrandService
     {
+        private SubUrbanClothesDbContext database;
 
-        public void Create(Brand Brand)
+        public BrandService(SubUrbanClothesDbContext database)
         {
-            if (string.IsNullOrEmpty(brand.BrandName) || string.IsNullOrWhiteSpace(brand.BrandName))
+            this.database = database;
+        }
+
+        public void Create(Brand brand)
+        {
+            if (string.IsNullOrEmpty(brand.Name) || string.IsNullOrWhiteSpace(brand.Name))
             {
                 throw new ArgumentException("Incorrect input for brand name.");
             }
             List<Brand> brands = database.Brands.ToList();
-            if (!brands.Exists(d => d.BrandName == brand.BrandName))
+            if (!brands.Exists(d => d.Name == brand.Name))
             {
                 database.Add(brand);
             }
@@ -22,7 +28,7 @@ namespace SubUrbanClothes.Web.Services
 
         public List<Brand> GetAll()
         {
-            List<Brand> brands = database.Directors.ToList();
+            List<Brand> brands = database.Brands.ToList();
             return brands;
         }
     }
