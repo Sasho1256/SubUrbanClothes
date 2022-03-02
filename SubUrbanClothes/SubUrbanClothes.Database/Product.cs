@@ -16,6 +16,8 @@ namespace SubUrbanClothes.Database
         public double Size { get; set; }
         public string ProductType { get; set; }
 
+        public string ThumbnailURL { get; set; }
+
         [ForeignKey("Brand")]
         [Column("Brand_Id")]
         public int? BrandId { get; set; }

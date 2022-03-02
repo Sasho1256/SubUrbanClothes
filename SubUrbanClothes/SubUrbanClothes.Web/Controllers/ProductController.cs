@@ -3,17 +3,17 @@ using SubUrbanClothes.Database;
 
 namespace SubUrbanClothes.Web.Controllers
 {
-    public class ProductListController : Controller
+    public class ProductController : Controller
     {
         private readonly SubUrbanClothesDbContext db;
 
-        public ProductListController(SubUrbanClothesDbContext db)
+        public ProductController(SubUrbanClothesDbContext db)
         {
             this.db = db;
         }
-        public IActionResult Index()
+        public IActionResult Index(int id)
         {
-            return View(db.Products.ToList());
+            return View(db.Products.FirstOrDefault(x => x.Id == id));
         }
     }
 }
