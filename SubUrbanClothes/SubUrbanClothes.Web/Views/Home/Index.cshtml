@@ -1,4 +1,4 @@
-﻿@model Product
+﻿@model List<Product>
 @{
     ViewData["Title"] = "SUBURBAN";
 }
@@ -14,21 +14,19 @@
         </div>
         <div class="productDivs">
             <ul class="productLists">
-                <li class="productItems">
-                    <p>asd</p>
-                </li>
-                <li class="productItems">
-                    <p>asd</p>
-                </li>
-                <li class="productItems">
-                    <p>asd</p>
-                </li>
-                <li class="productItems">
-                    <p>asd</p>
-                </li>
-                <li class="productItems">
-                    <p>asd</p>
-                </li>
+                @{
+                    if (Model != null)
+                    {
+                        var men = Model.Where(x => x.Gender.Name == "Men").Take(5).ToList();
+                        for (int i = 0; i < men.Count; i++)
+                        {
+                            <li class="productItems">
+                                <img src="@Model[i].ThumbnailURL" />
+                                <p>@Model[i].Name</p>
+                            </li>
+                        }
+                    }
+                }
             </ul>
         </div>
         <div class="genderDividers">
@@ -37,21 +35,19 @@
         </div>
         <div class="productDivs">
             <ul class="productLists">
-                <li class="productItems">
-                    <p>asd</p>
-                </li>
-                <li class="productItems">
-                    <p>asd</p>
-                </li>
-                <li class="productItems">
-                    <p>asd</p>
-                </li>
-                <li class="productItems">
-                    <p>asd</p>
-                </li>
-                <li class="productItems">
-                    <p>asd</p>
-                </li>
+                @{
+                    if (Model != null)
+                    {
+                        var men = Model.Where(x => x.Gender.Name == "Women").Take(5).ToList();
+                        for (int i = 0; i < men.Count; i++)
+                        {
+                            <li class="productItems">
+                                <img src="@Model[i].ThumbnailURL" />
+                                <p>@Model[i].Name</p>
+                            </li>
+                        }
+                    }
+                }
             </ul>
         </div>
         <div class="genderDividers">
@@ -60,21 +56,19 @@
         </div>
         <div class="productDivs">
             <ul class="productLists">
-                <li class="productItems">
-                    <p>asd</p>
-                </li>
-                <li class="productItems">
-                    <p>asd</p>
-                </li>
-                <li class="productItems">
-                    <p>asd</p>
-                </li>
-                <li class="productItems">
-                    <p>asd</p>
-                </li>
-                <li class="productItems">
-                    <p>asd</p>
-                </li>
+                @{
+                    if (Model != null)
+                    {
+                        var men = Model.Where(x => x.Gender.Name == "Children").Take(5).ToList();
+                        for (int i = 0; i < men.Count; i++)
+                        {
+                            <li class="productItems">
+                                <img src="@Model[i].ThumbnailURL" />
+                                <p>@Model[i].Name</p>
+                            </li>
+                        }
+                    }
+                }
             </ul>
         </div>
     </div>
