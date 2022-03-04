@@ -216,6 +216,7 @@ namespace SubUrbanClothes.Database.Migrations
                     Price = table.Column<double>(type: "float", nullable: false),
                     Size = table.Column<double>(type: "float", nullable: false),
                     ProductType = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ThumbnailURL = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Brand_Id = table.Column<int>(type: "int", nullable: false),
                     Color_Id = table.Column<int>(type: "int", nullable: false),
                     Category_Id = table.Column<int>(type: "int", nullable: false),

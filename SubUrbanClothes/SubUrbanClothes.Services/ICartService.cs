@@ -1,4 +1,5 @@
 ﻿using SubUrbanClothes.Database;
+using SubUrbanClothes.Database.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

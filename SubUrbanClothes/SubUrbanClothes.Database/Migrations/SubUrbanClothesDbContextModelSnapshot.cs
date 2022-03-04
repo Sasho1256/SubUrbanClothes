@@ -224,7 +224,7 @@ namespace SubUrbanClothes.Database.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("SubUrbanClothes.Database.Brand", b =>
+            modelBuilder.Entity("SubUrbanClothes.Database.Models.Brand", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -244,7 +244,7 @@ namespace SubUrbanClothes.Database.Migrations
                     b.ToTable("Brands");
                 });
 
-            modelBuilder.Entity("SubUrbanClothes.Database.CartItem", b =>
+            modelBuilder.Entity("SubUrbanClothes.Database.Models.CartItem", b =>
                 {
                     b.Property<string>("ItemId")
                         .HasColumnType("nvarchar(450)")
@@ -272,7 +272,7 @@ namespace SubUrbanClothes.Database.Migrations
                     b.ToTable("ShoppingCartItems");
                 });
 
-            modelBuilder.Entity("SubUrbanClothes.Database.Category", b =>
+            modelBuilder.Entity("SubUrbanClothes.Database.Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -292,7 +292,7 @@ namespace SubUrbanClothes.Database.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("SubUrbanClothes.Database.Color", b =>
+            modelBuilder.Entity("SubUrbanClothes.Database.Models.Color", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -312,7 +312,7 @@ namespace SubUrbanClothes.Database.Migrations
                     b.ToTable("Colors");
                 });
 
-            modelBuilder.Entity("SubUrbanClothes.Database.Gender", b =>
+            modelBuilder.Entity("SubUrbanClothes.Database.Models.Gender", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -332,7 +332,7 @@ namespace SubUrbanClothes.Database.Migrations
                     b.ToTable("Genders");
                 });
 
-            modelBuilder.Entity("SubUrbanClothes.Database.Product", b =>
+            modelBuilder.Entity("SubUrbanClothes.Database.Models.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -373,6 +373,10 @@ namespace SubUrbanClothes.Database.Migrations
 
                     b.Property<double>("Size")
                         .HasColumnType("float");
+
+                    b.Property<string>("ThumbnailURL")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -441,9 +445,9 @@ namespace SubUrbanClothes.Database.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SubUrbanClothes.Database.CartItem", b =>
+            modelBuilder.Entity("SubUrbanClothes.Database.Models.CartItem", b =>
                 {
-                    b.HasOne("SubUrbanClothes.Database.Product", "Product")
+                    b.HasOne("SubUrbanClothes.Database.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -452,27 +456,27 @@ namespace SubUrbanClothes.Database.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("SubUrbanClothes.Database.Product", b =>
+            modelBuilder.Entity("SubUrbanClothes.Database.Models.Product", b =>
                 {
-                    b.HasOne("SubUrbanClothes.Database.Brand", "Brand")
+                    b.HasOne("SubUrbanClothes.Database.Models.Brand", "Brand")
                         .WithMany()
                         .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SubUrbanClothes.Database.Category", "Category")
+                    b.HasOne("SubUrbanClothes.Database.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SubUrbanClothes.Database.Color", "Color")
+                    b.HasOne("SubUrbanClothes.Database.Models.Color", "Color")
                         .WithMany()
                         .HasForeignKey("ColorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SubUrbanClothes.Database.Gender", "Gender")
+                    b.HasOne("SubUrbanClothes.Database.Models.Gender", "Gender")
                         .WithMany()
                         .HasForeignKey("GenderId")
                         .OnDelete(DeleteBehavior.Cascade)

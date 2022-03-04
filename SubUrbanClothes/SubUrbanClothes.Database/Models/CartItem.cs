@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SubUrbanClothes.Database
+namespace SubUrbanClothes.Database.Models
 {
     public class CartItem
     {
