@@ -9,12 +9,12 @@
     width: 160px; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     top: 5.5em; /* Stay at the top */
-    bottom:3em;
+    bottom: 3em;
     left: 0;
     background-color: #111; /* Black */
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 10px;
-    z-index:0;
+    z-index: 0;
 }
 
 .genders {
@@ -22,8 +22,8 @@
 }
 
 .myContainer {
-    margin-left:160px;
-    margin-top:6em;
+    margin-left: 160px;
+    margin-top: 6em;
 }
 
 .filterDiv {
@@ -41,6 +41,12 @@
     border-radius: 15px;
 }
 
+    .filterDiv img {
+        width: 90%;
+        margin-bottom: 1.5em;
+        border-radius: 15px;
+    }
+
 /* The "show" class is added to the filtered elements */
 .show {
     display: block;
@@ -53,8 +59,8 @@
     padding: 12px 16px;
     background-color: #f1f1f1;
     cursor: pointer;
-    width:85%;
-    margin:10px;
+    width: 85%;
+    margin: 10px;
 }
 
     /* Add a light grey background on mouse-over */
