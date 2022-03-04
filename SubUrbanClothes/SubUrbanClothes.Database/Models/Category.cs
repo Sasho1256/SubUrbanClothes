@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SubUrbanClothes.Database
+namespace SubUrbanClothes.Database.Models
 {
-    public class Gender
+    public class Category
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }

@@ -1,25 +1,25 @@
-﻿using SubUrbanClothes.Database;
+﻿using SubUrbanClothes.Database.Models;
 
 namespace SubUrbanClothes.Web.Models
 {
-    public class ProductDTO
+    public class ProductViewModel
     {
         public Product product { get; set; }
         public List<Brand> Brands { get; set; }
         public List<Category> Categories { get; set; }
 
-        public ProductDTO()
+        public ProductViewModel()
         {
 
         }
 
-        public ProductDTO(List<Brand> brands, List<Category> categories)
+        public ProductViewModel(List<Brand> brands, List<Category> categories)
         {
             this.Brands = brands;
             this.Categories = categories;
         }
 
-        public ProductDTO(Product product, List<Brand> brands, List<Category> categories)
+        public ProductViewModel(Product product, List<Brand> brands, List<Category> categories)
         {
             this.product = product;
             this.Brands = brands;

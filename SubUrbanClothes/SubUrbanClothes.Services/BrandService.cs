@@ -1,4 +1,5 @@
 ﻿using SubUrbanClothes.Database;
+using SubUrbanClothes.Database.Models;
 using SubUrbanClothes.Web.Services.Contracts;
 
 namespace SubUrbanClothes.Web.Services
