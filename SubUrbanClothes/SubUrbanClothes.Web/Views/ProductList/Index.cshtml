@@ -52,7 +52,7 @@
             var products = Model;
             for (int i = 0; i < products.Count; i++)
             {
-                <div class="filterDiv @products[i].Gender.Name @products[i].ProductType @products[i].Category.Name @products[i].Color.Name @products[i].Brand.Name">
+                <div class="filterDiv @products[i].Gender.Gender_Name @products[i].ProductType @products[i].Category.Category_Name @products[i].Color.Color_Name @products[i].Brand.Brand_Name">
                     <img src="@products[i].ThumbnailURL" />
                     <p>@products[i].Name</p>
                 </div>
