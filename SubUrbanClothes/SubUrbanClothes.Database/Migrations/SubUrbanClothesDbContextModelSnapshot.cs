@@ -232,14 +232,14 @@ namespace SubUrbanClothes.Database.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Name")
-                        .IsRequired()
+                    b.Property<string>("Brand_Name")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Name")
-                        .IsUnique();
+                    b.HasIndex("Brand_Name")
+                        .IsUnique()
+                        .HasFilter("[Brand_Name] IS NOT NULL");
 
                     b.ToTable("Brands");
                 });
@@ -280,14 +280,14 @@ namespace SubUrbanClothes.Database.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Name")
-                        .IsRequired()
+                    b.Property<string>("Category_Name")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Name")
-                        .IsUnique();
+                    b.HasIndex("Category_Name")
+                        .IsUnique()
+                        .HasFilter("[Category_Name] IS NOT NULL");
 
                     b.ToTable("Categories");
                 });
@@ -300,14 +300,14 @@ namespace SubUrbanClothes.Database.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Name")
-                        .IsRequired()
+                    b.Property<string>("Color_Name")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Name")
-                        .IsUnique();
+                    b.HasIndex("Color_Name")
+                        .IsUnique()
+                        .HasFilter("[Color_Name] IS NOT NULL");
 
                     b.ToTable("Colors");
                 });
@@ -320,14 +320,14 @@ namespace SubUrbanClothes.Database.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Name")
-                        .IsRequired()
+                    b.Property<string>("Gender_Name")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Name")
-                        .IsUnique();
+                    b.HasIndex("Gender_Name")
+                        .IsUnique()
+                        .HasFilter("[Gender_Name] IS NOT NULL");
 
                     b.ToTable("Genders");
                 });
@@ -340,23 +340,19 @@ namespace SubUrbanClothes.Database.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("BrandId")
-                        .IsRequired()
+                    b.Property<int?>("Brand_Id")
                         .HasColumnType("int")
                         .HasColumnName("Brand_Id");
 
-                    b.Property<int?>("CategoryId")
-                        .IsRequired()
+                    b.Property<int?>("Category_Id")
                         .HasColumnType("int")
                         .HasColumnName("Category_Id");
 
-                    b.Property<int?>("ColorId")
-                        .IsRequired()
+                    b.Property<int?>("Color_Id")
                         .HasColumnType("int")
                         .HasColumnName("Color_Id");
 
-                    b.Property<int?>("GenderId")
-                        .IsRequired()
+                    b.Property<int?>("Gender_Id")
                         .HasColumnType("int")
                         .HasColumnName("Gender_Id");
 
@@ -375,18 +371,17 @@ namespace SubUrbanClothes.Database.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("ThumbnailURL")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BrandId");
+                    b.HasIndex("Brand_Id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("Category_Id");
 
-                    b.HasIndex("ColorId");
+                    b.HasIndex("Color_Id");
 
-                    b.HasIndex("GenderId");
+                    b.HasIndex("Gender_Id");
 
                     b.HasIndex("ProductType")
                         .IsUnique();
@@ -460,27 +455,19 @@ namespace SubUrbanClothes.Database.Migrations
                 {
                     b.HasOne("SubUrbanClothes.Database.Models.Brand", "Brand")
                         .WithMany()
-                        .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Brand_Id");
 
                     b.HasOne("SubUrbanClothes.Database.Models.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Category_Id");
 
                     b.HasOne("SubUrbanClothes.Database.Models.Color", "Color")
                         .WithMany()
-                        .HasForeignKey("ColorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Color_Id");
 
                     b.HasOne("SubUrbanClothes.Database.Models.Gender", "Gender")
                         .WithMany()
-                        .HasForeignKey("GenderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Gender_Id");
 
                     b.Navigation("Brand");
 
