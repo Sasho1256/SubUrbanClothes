@@ -17,7 +17,7 @@
                 @{
                     if (Model != null)
                     {
-                        var men = Model.Where(x => x.Gender.Name == "Men").Take(5).ToList();
+                        var men = Model.Where(x => x.Gender.Gender_Name == "Men").Take(5).ToList();
                         for (int i = 0; i < men.Count; i++)
                         {
                             <li class="productItems">
@@ -38,8 +38,8 @@
                 @{
                     if (Model != null)
                     {
-                        var men = Model.Where(x => x.Gender.Name == "Women").Take(5).ToList();
-                        for (int i = 0; i < men.Count; i++)
+                        var women = Model.Where(x => x.Gender.Gender_Name == "Women").Take(5).ToList();
+                        for (int i = 0; i < women.Count; i++)
                         {
                             <li class="productItems">
                                 <img src="@Model[i].ThumbnailURL" />
@@ -59,8 +59,8 @@
                 @{
                     if (Model != null)
                     {
-                        var men = Model.Where(x => x.Gender.Name == "Children").Take(5).ToList();
-                        for (int i = 0; i < men.Count; i++)
+                        var children = Model.Where(x => x.Gender.Gender_Name == "Children").Take(5).ToList();
+                        for (int i = 0; i < children.Count; i++)
                         {
                             <li class="productItems">
                                 <img src="@Model[i].ThumbnailURL" />
