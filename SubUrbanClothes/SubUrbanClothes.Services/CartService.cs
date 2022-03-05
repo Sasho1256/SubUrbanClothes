@@ -38,8 +38,7 @@ namespace SubUrbanClothes.Services
                     ItemId = Guid.NewGuid().ToString(),
                     ProductId = id,
                     CartId = ShoppingCartId,
-                    Product = _db.Products.SingleOrDefault(
-                   p => p.Id == id),
+                    Product = _db.Products.SingleOrDefault(p => p.Id == id),
                     Quantity = 1,
                     DateCreated = DateTime.Now
                 };
