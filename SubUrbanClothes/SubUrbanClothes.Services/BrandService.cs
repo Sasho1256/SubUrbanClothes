@@ -15,12 +15,12 @@ namespace SubUrbanClothes.Web.Services
 
         public void Create(Brand brand)
         {
-            if (string.IsNullOrEmpty(brand.Name) || string.IsNullOrWhiteSpace(brand.Name))
+            if (string.IsNullOrEmpty(brand.Brand_Name) || string.IsNullOrWhiteSpace(brand.Brand_Name))
             {
                 throw new ArgumentException("Incorrect input for brand name.");
             }
             List<Brand> brands = database.Brands.ToList();
-            if (!brands.Exists(d => d.Name == brand.Name))
+            if (!brands.Exists(d => d.Brand_Name == brand.Brand_Name))
             {
                 database.Add(brand);
             }

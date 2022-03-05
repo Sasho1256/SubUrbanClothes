@@ -11,6 +11,6 @@ namespace SubUrbanClothes.Database.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string? Color_Name { get; set; }
     }
 }
