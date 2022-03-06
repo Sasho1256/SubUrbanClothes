@@ -28,23 +28,19 @@ namespace SubUrbanClothes.Database
             base.OnModelCreating(builder);
             //fluent api
             builder.Entity<Category>()
-                .HasIndex(x => x.Name)
+                .HasIndex(x => x.Category_Name)
                 .IsUnique();
 
             builder.Entity<Gender>()
-                .HasIndex(x => x.Name)
+                .HasIndex(x => x.Gender_Name)
                 .IsUnique();
 
             builder.Entity<Brand>()
-                .HasIndex(x => x.Name)
+                .HasIndex(x => x.Brand_Name)
                 .IsUnique();
 
             builder.Entity<Color>()
-                .HasIndex(x => x.Name)
-                .IsUnique();
-
-            builder.Entity<Product>()
-                .HasIndex(x => x.ProductType)
+                .HasIndex(x => x.Color_Name)
                 .IsUnique();
         }
     }

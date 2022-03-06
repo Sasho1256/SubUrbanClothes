@@ -1,11 +1,39 @@
 ﻿@model Product
 @{
-    ViewData["Title"] = Model.Name;
+    if (Model != null)
+    {
+        ViewData["Title"] = Model.Name;
+    }
+    else
+    {
+        ViewData["Title"] = "Product";
+    }
 }
 <head>
     <link rel="stylesheet" href="~/css/product.css" asp-append-version="true" />
 </head>
 
 <body>
-    <div id="allDiv"></div>
+    <div id="allDiv">
+        @{
+            if (Model != null)
+            {
+                <img src="@Model.ThumbnailURL" />
+                <div id="metadata">
+                    <h3>@Model.Name</h3>
+                    <p>
+                        Brand: @Model.Brand.Brand_Name<br>
+                        Color: @Model.Color.Color_Name<br>
+                        Gender: @Model.Gender.Gender_Name<br>
+                        Price: @Model.Price<br>
+                        Size: @Model.Size
+                    </p>
+                </div>
+            }
+            else
+            {
+                <h2>No product found</h2>
+            }
+        }
+    </div>
 </body>

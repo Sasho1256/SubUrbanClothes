@@ -54,7 +54,7 @@ namespace SubUrbanClothes.Database.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    Brand_Name = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -67,7 +67,7 @@ namespace SubUrbanClothes.Database.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    Category_Name = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -80,7 +80,7 @@ namespace SubUrbanClothes.Database.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    Color_Name = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -93,7 +93,7 @@ namespace SubUrbanClothes.Database.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    Gender_Name = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -214,13 +214,13 @@ namespace SubUrbanClothes.Database.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
-                    Size = table.Column<double>(type: "float", nullable: false),
-                    ProductType = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ThumbnailURL = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Brand_Id = table.Column<int>(type: "int", nullable: false),
-                    Color_Id = table.Column<int>(type: "int", nullable: false),
-                    Category_Id = table.Column<int>(type: "int", nullable: false),
-                    Gender_Id = table.Column<int>(type: "int", nullable: false)
+                    Size = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ThumbnailURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Brand_Id = table.Column<int>(type: "int", nullable: true),
+                    Color_Id = table.Column<int>(type: "int", nullable: true),
+                    Category_Id = table.Column<int>(type: "int", nullable: true),
+                    Gender_Id = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -229,26 +229,22 @@ namespace SubUrbanClothes.Database.Migrations
                         name: "FK_Products_Brands_Brand_Id",
                         column: x => x.Brand_Id,
                         principalTable: "Brands",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Products_Categories_Category_Id",
                         column: x => x.Category_Id,
                         principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Products_Colors_Color_Id",
                         column: x => x.Color_Id,
                         principalTable: "Colors",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Products_Genders_Gender_Id",
                         column: x => x.Gender_Id,
                         principalTable: "Genders",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -312,28 +308,32 @@ namespace SubUrbanClothes.Database.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Brands_Name",
+                name: "IX_Brands_Brand_Name",
                 table: "Brands",
-                column: "Name",
-                unique: true);
+                column: "Brand_Name",
+                unique: true,
+                filter: "[Brand_Name] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Categories_Name",
+                name: "IX_Categories_Category_Name",
                 table: "Categories",
-                column: "Name",
-                unique: true);
+                column: "Category_Name",
+                unique: true,
+                filter: "[Category_Name] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Colors_Name",
+                name: "IX_Colors_Color_Name",
                 table: "Colors",
-                column: "Name",
-                unique: true);
+                column: "Color_Name",
+                unique: true,
+                filter: "[Color_Name] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Genders_Name",
+                name: "IX_Genders_Gender_Name",
                 table: "Genders",
-                column: "Name",
-                unique: true);
+                column: "Gender_Name",
+                unique: true,
+                filter: "[Gender_Name] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_Brand_Id",
@@ -354,12 +354,6 @@ namespace SubUrbanClothes.Database.Migrations
                 name: "IX_Products_Gender_Id",
                 table: "Products",
                 column: "Gender_Id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Products_ProductType",
-                table: "Products",
-                column: "ProductType",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ShoppingCartItems_Product_Id",

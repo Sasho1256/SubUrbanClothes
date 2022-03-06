@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SubUrbanClothes.Database;
+using SubUrbanClothes.Database.Models;
 
 namespace SubUrbanClothes.Web.Controllers
 {
@@ -13,7 +15,7 @@ namespace SubUrbanClothes.Web.Controllers
         }
         public IActionResult Index(int id)
         {
-            return View(db.Products.FirstOrDefault(x => x.Id == id));
+            return View(db.Products.Include(product => product.Brand).Include(product => product.Color).Include(product => product.Category).Include(product => product.Gender).SingleOrDefault(x => x.Id == id));
         }
     }
 }

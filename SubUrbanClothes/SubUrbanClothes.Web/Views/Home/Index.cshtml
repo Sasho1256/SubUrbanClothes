@@ -17,12 +17,12 @@
                 @{
                     if (Model != null)
                     {
-                        var men = Model.Where(x => x.Gender.Name == "Men").Take(5).ToList();
+                        var men = Model.Where(x => x.Gender.Gender_Name == "Men").Take(5).ToList();
                         for (int i = 0; i < men.Count; i++)
                         {
                             <li class="productItems">
-                                <img src="@Model[i].ThumbnailURL" />
-                                <p>@Model[i].Name</p>
+                                    <img src="@men[i].ThumbnailURL" />
+                                    @Html.ActionLink(men[i].Name, "Index", "Product", routeValues: new { id = men[i].Id})
                             </li>
                         }
                     }
@@ -38,12 +38,12 @@
                 @{
                     if (Model != null)
                     {
-                        var men = Model.Where(x => x.Gender.Name == "Women").Take(5).ToList();
-                        for (int i = 0; i < men.Count; i++)
+                        var women = Model.Where(x => x.Gender.Gender_Name == "Women").Take(5).ToList();
+                        for (int i = 0; i < women.Count; i++)
                         {
                             <li class="productItems">
-                                <img src="@Model[i].ThumbnailURL" />
-                                <p>@Model[i].Name</p>
+                                    <img src="@women[i].ThumbnailURL" />
+                                    @Html.ActionLink(women[i].Name, "Index", "Product", routeValues: new { id = women[i].Id})
                             </li>
                         }
                     }
@@ -59,12 +59,12 @@
                 @{
                     if (Model != null)
                     {
-                        var men = Model.Where(x => x.Gender.Name == "Children").Take(5).ToList();
-                        for (int i = 0; i < men.Count; i++)
+                        var children = Model.Where(x => x.Gender.Gender_Name == "Children").Take(5).ToList();
+                        for (int i = 0; i < children.Count; i++)
                         {
                             <li class="productItems">
-                                <img src="@Model[i].ThumbnailURL" />
-                                <p>@Model[i].Name</p>
+                                    <img src="@children[i].ThumbnailURL" />
+                                    @Html.ActionLink(children[i].Name, "Index", "Product", routeValues: new { id = children[i].Id})
                             </li>
                         }
                     }
