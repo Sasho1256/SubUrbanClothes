@@ -21,8 +21,8 @@
                         for (int i = 0; i < men.Count; i++)
                         {
                             <li class="productItems">
-                                <img src="@Model[i].ThumbnailURL" />
-                                <p>@Model[i].Name</p>
+                                    <img src="@men[i].ThumbnailURL" />
+                                    @Html.ActionLink(men[i].Name, "Index", "Product", routeValues: new { id = men[i].Id})
                             </li>
                         }
                     }
@@ -42,8 +42,8 @@
                         for (int i = 0; i < women.Count; i++)
                         {
                             <li class="productItems">
-                                <img src="@Model[i].ThumbnailURL" />
-                                <p>@Model[i].Name</p>
+                                    <img src="@women[i].ThumbnailURL" />
+                                    @Html.ActionLink(women[i].Name, "Index", "Product", routeValues: new { id = women[i].Id})
                             </li>
                         }
                     }
@@ -63,8 +63,8 @@
                         for (int i = 0; i < children.Count; i++)
                         {
                             <li class="productItems">
-                                <img src="@Model[i].ThumbnailURL" />
-                                <p>@Model[i].Name</p>
+                                    <img src="@children[i].ThumbnailURL" />
+                                    @Html.ActionLink(children[i].Name, "Index", "Product", routeValues: new { id = children[i].Id})
                             </li>
                         }
                     }

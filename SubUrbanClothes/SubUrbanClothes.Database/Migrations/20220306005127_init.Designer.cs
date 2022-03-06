@@ -12,7 +12,7 @@ using SubUrbanClothes.Database;
 namespace SubUrbanClothes.Database.Migrations
 {
     [DbContext(typeof(SubUrbanClothesDbContext))]
-    [Migration("20220305212359_init")]
+    [Migration("20220306005127_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -367,10 +367,11 @@ namespace SubUrbanClothes.Database.Migrations
 
                     b.Property<string>("ProductType")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Size")
-                        .HasColumnType("float");
+                    b.Property<string>("Size")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ThumbnailURL")
                         .HasColumnType("nvarchar(max)");
@@ -384,9 +385,6 @@ namespace SubUrbanClothes.Database.Migrations
                     b.HasIndex("Color_Id");
 
                     b.HasIndex("Gender_Id");
-
-                    b.HasIndex("ProductType")
-                        .IsUnique();
 
                     b.ToTable("Products");
                 });
