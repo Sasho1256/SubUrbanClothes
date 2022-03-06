@@ -214,8 +214,8 @@ namespace SubUrbanClothes.Database.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
-                    Size = table.Column<double>(type: "float", nullable: false),
-                    ProductType = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Size = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ThumbnailURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Brand_Id = table.Column<int>(type: "int", nullable: true),
                     Color_Id = table.Column<int>(type: "int", nullable: true),
@@ -354,12 +354,6 @@ namespace SubUrbanClothes.Database.Migrations
                 name: "IX_Products_Gender_Id",
                 table: "Products",
                 column: "Gender_Id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Products_ProductType",
-                table: "Products",
-                column: "ProductType",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ShoppingCartItems_Product_Id",

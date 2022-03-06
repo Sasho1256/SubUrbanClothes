@@ -42,10 +42,6 @@ namespace SubUrbanClothes.Database
             builder.Entity<Color>()
                 .HasIndex(x => x.Color_Name)
                 .IsUnique();
-
-            builder.Entity<Product>()
-                .HasIndex(x => x.ProductType)
-                .IsUnique();
         }
     }
 }

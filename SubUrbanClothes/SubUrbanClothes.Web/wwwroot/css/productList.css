@@ -29,7 +29,7 @@
 .filterDiv {
     float: left;
     color: black;
-    line-height: 100px;
+    line-height: 60px;
     text-align: center;
     margin: 2px;
     display: none; /* Hidden by default */
@@ -43,7 +43,7 @@
 
     .filterDiv img {
         width: 90%;
-        margin-bottom: 1.5em;
+        height:70%;
         border-radius: 15px;
     }
 
