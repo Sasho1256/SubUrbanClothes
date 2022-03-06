@@ -47,6 +47,16 @@
         border-radius: 15px;
     }
 
+    .filterDiv a {
+        text-decoration: none;
+        color: black !important;
+    }
+
+        .filterDiv a:hover {
+            text-decoration: none;
+            color: black !important;
+        }
+
 /* The "show" class is added to the filtered elements */
 .show {
     display: block;
