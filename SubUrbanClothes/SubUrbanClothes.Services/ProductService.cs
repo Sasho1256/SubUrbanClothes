@@ -17,7 +17,7 @@ public class ProductService : IProductService
         this.database = database;
     }
 
-    public List<Product> GetAllProduct()
+    public List<Product> GetAllProducts()
     {
         return database.Products.ToList();
     }
