@@ -32,7 +32,7 @@ namespace SubUrbanClothes.Services
                 && c.ProductId == id);
             if (cartItem == null)
             {
-                // Create a new cart item if no cart item exists.                 
+                // Create a new cart item if no cart item exists. 
                 cartItem = new CartItem
                 {
                     ItemId = Guid.NewGuid().ToString(),

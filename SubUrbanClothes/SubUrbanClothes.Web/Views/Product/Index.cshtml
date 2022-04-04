@@ -29,10 +29,11 @@
                         Size: @Model.Size
                     </p>
                 </div>
+                <a class="btn btn-info" asp-controller="Cart" asp-action="AddToCart" asp-route-value="@Model.Id">Add to cart</a>
             }
             else
             {
-                <h2>No product found</h2>
+                <h2>Product not found</h2>
             }
         }
     </div>

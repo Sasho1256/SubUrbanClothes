@@ -15,8 +15,12 @@ namespace SubUrbanClothes.Web.Controllers
 
         public IActionResult Index()
         {
-            //List<CartItem> cartItems = shoppingCartService.GetCartItems();
-            //return View(cartItems);
+            return View();
+        }
+
+        public IActionResult AddToCart(int id)
+        {
+            shoppingCartService.AddToCart(id);
             return View();
         }
     }
