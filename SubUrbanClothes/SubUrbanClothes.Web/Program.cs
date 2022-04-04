@@ -17,6 +17,11 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddTransient<ICartService, CartService>();
 
+builder.Services.AddMvc();
+builder.Services.AddSession(options => {
+    options.IdleTimeout = TimeSpan.FromMinutes(60);
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -45,3 +50,9 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
+
+app.UseSession();
+//app.UseMvc();
+//app.Run(context => {
+//    return context.Response.WriteAsync("Hello World!");
+//});
