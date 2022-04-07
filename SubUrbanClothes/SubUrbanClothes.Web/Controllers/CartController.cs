@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SubUrbanClothes.Database;
+using SubUrbanClothes.Database.Models;
 using SubUrbanClothes.Services;
 
 namespace SubUrbanClothes.Web.Controllers
@@ -15,13 +16,14 @@ namespace SubUrbanClothes.Web.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var cartItems = shoppingCartService.GetCartItems();
+            return View(cartItems);
         }
 
-        public IActionResult AddToCart(int id)
+        public IActionResult AddToCart(Product product)
         {
-            shoppingCartService.AddToCart(id);
-            return View();
+            shoppingCartService.AddToCart(product.Id);
+            return RedirectToAction("Index");
         }
     }
 }

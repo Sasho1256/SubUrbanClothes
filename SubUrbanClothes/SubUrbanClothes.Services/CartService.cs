@@ -14,12 +14,12 @@ namespace SubUrbanClothes.Services
         public const string CartSessionKey = "CartId";
 
         private SubUrbanClothesDbContext _db;
-        IHttpContextAccessor contextAccessor;
+        private IHttpContextAccessor contextAccessor;
 
-        public CartService(SubUrbanClothesDbContext _db)
+        public CartService(SubUrbanClothesDbContext _db, IHttpContextAccessor contextAccessor)
         {
             this._db = _db;
-            this.contextAccessor = new HttpContextAccessor();
+            this.contextAccessor = contextAccessor;
         }
 
         public void AddToCart(int id)
@@ -92,6 +92,20 @@ namespace SubUrbanClothes.Services
 
             return _db.ShoppingCartItems.Where(
                 c => c.CartId == ShoppingCartId).ToList();
+        }
+
+        public decimal GetTotal()
+        {
+            ShoppingCartId = GetCartId();
+            // Multiply product price by quantity of that product to get        
+            // the current price for each of those products in the cart.  
+            // Sum all product price totals to get the cart total.   
+            decimal? total = decimal.Zero;
+            total = (decimal?)(from cartItems in _db.ShoppingCartItems
+                               where cartItems.CartId == ShoppingCartId
+                               select (int?)cartItems.Quantity *
+                               cartItems.Product.Price).Sum();
+            return total ?? decimal.Zero;
         }
     }
 }
