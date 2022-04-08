@@ -207,6 +207,23 @@ namespace SubUrbanClothes.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ShoppingCarts",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShoppingCarts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ShoppingCarts_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -252,7 +269,7 @@ namespace SubUrbanClothes.Database.Migrations
                 columns: table => new
                 {
                     Item_Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Cart_Id = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Cart_Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Product_Id = table.Column<int>(type: "int", nullable: false)
@@ -264,6 +281,12 @@ namespace SubUrbanClothes.Database.Migrations
                         name: "FK_ShoppingCartItems_Products_Product_Id",
                         column: x => x.Product_Id,
                         principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ShoppingCartItems_ShoppingCarts_Cart_Id",
+                        column: x => x.Cart_Id,
+                        principalTable: "ShoppingCarts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -356,9 +379,19 @@ namespace SubUrbanClothes.Database.Migrations
                 column: "Gender_Id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ShoppingCartItems_Cart_Id",
+                table: "ShoppingCartItems",
+                column: "Cart_Id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ShoppingCartItems_Product_Id",
                 table: "ShoppingCartItems",
                 column: "Product_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShoppingCarts_UserId",
+                table: "ShoppingCarts",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -385,10 +418,10 @@ namespace SubUrbanClothes.Database.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "ShoppingCarts");
 
             migrationBuilder.DropTable(
                 name: "Brands");
@@ -401,6 +434,9 @@ namespace SubUrbanClothes.Database.Migrations
 
             migrationBuilder.DropTable(
                 name: "Genders");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
         }
     }
 }

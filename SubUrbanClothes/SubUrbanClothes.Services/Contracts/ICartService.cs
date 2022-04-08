@@ -15,6 +15,6 @@ namespace SubUrbanClothes.Services.Contracts
         public void Dispose();
         public List<CartItem> GetCartItems(string cartId);
         public decimal GetTotal(string cartId);
-        public string GetCartIdByUser(string userId);
+        public string GetCartIdByUser(string userName);
     }
 }

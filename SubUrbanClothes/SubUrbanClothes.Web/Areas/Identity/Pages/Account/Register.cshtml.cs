@@ -138,7 +138,7 @@ namespace SubUrbanClothes.Web.Areas.Identity.Pages.Account
                     Cart cart = new Cart()
                     {
                         Id = Guid.NewGuid().ToString(),
-                        AspNetUser_Id = userId
+                        UserId = userId
                     };
 
                     _db.ShoppingCarts.Add(cart);

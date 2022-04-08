@@ -10,7 +10,7 @@ namespace SubUrbanClothes.Database.Models
     public class Cart
     {
         public string Id { get; set; }
-        public string? AspNetUser_Id { get; set; }
+        public string? UserId { get; set; }
         public IdentityUser User { get; set; }
 
     }

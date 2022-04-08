@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using SubUrbanClothes.Database;
 using SubUrbanClothes.Database.Models;
 using SubUrbanClothes.Services.Contracts;
@@ -76,7 +77,7 @@ namespace SubUrbanClothes.Services
         {
             ShoppingCartId = cartId;
 
-            return _db.ShoppingCartItems.Where(
+            return _db.ShoppingCartItems.Include(cartItem => cartItem.Product).Where(
                 c => c.CartId == ShoppingCartId).ToList();
         }
 
@@ -94,9 +95,9 @@ namespace SubUrbanClothes.Services
             return total ?? decimal.Zero;
         }
 
-        public string GetCartIdByUser(string userId)
+        public string GetCartIdByUser(string userName)
         {
-            return _db.ShoppingCarts.Where(c => c.AspNetUser_Id == userId).FirstOrDefault().Id;
+            return _db.ShoppingCarts.Where(c => c.User.UserName == userName).FirstOrDefault().Id ?? "";
         }
     }
 }

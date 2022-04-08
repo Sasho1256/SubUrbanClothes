@@ -22,6 +22,12 @@ builder.Services.AddTransient<ICartService, CartService>();
 
 builder.Services.AddDistributedMemoryCache();
 
+builder.Services.Configure<CookiePolicyOptions>(o =>
+{
+    o.CheckConsentNeeded = context => false;
+    o.MinimumSameSitePolicy = SameSiteMode.None;
+});
+
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromSeconds(10);
