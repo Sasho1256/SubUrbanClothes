@@ -16,6 +16,7 @@ namespace SubUrbanClothes.Database.Models
         
         [Column("Cart_Id")]
         public string CartId { get; set; }
+        public Cart Cart { get; set; }
 
         public int Quantity { get; set; }
 

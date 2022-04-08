@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SubUrbanClothes.Database;
 using SubUrbanClothes.Services;
+using SubUrbanClothes.Services.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,11 +16,23 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<SubUrbanClothesDbContext>();
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddTransient<ICartService, CartService>();
 
-builder.Services.AddMvc();
-builder.Services.AddSession(options => {
-    options.IdleTimeout = TimeSpan.FromMinutes(60);
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.Configure<CookiePolicyOptions>(o =>
+{
+    o.CheckConsentNeeded = context => false;
+    o.MinimumSameSitePolicy = SameSiteMode.None;
+});
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromSeconds(10);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
 });
 
 var app = builder.Build();
@@ -44,6 +57,8 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.UseSession();
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
@@ -51,7 +66,6 @@ app.MapRazorPages();
 
 app.Run();
 
-app.UseSession();
 //app.UseMvc();
 //app.Run(context => {
 //    return context.Response.WriteAsync("Hello World!");

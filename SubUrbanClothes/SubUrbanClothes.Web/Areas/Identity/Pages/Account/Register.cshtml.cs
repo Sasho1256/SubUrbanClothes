@@ -18,6 +18,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using SubUrbanClothes.Database;
+using SubUrbanClothes.Database.Models;
 
 namespace SubUrbanClothes.Web.Areas.Identity.Pages.Account
 {
@@ -29,13 +31,15 @@ namespace SubUrbanClothes.Web.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private SubUrbanClothesDbContext _db;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            SubUrbanClothesDbContext db)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -43,6 +47,7 @@ namespace SubUrbanClothes.Web.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _db = db;
         }
 
         /// <summary>
@@ -123,6 +128,23 @@ namespace SubUrbanClothes.Web.Areas.Identity.Pages.Account
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
+
+                    //TODO: 
+                    // create a cart            DONE
+                    // set the cart to user     DONE
+                    // add cart to dbContext    DONE
+                    // db save changes          DONE
+
+                    Cart cart = new Cart()
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        UserId = userId
+                    };
+
+                    _db.ShoppingCarts.Add(cart);
+                    _db.SaveChanges();
+                    
+                    
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(

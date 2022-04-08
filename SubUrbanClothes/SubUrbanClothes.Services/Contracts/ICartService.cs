@@ -6,13 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SubUrbanClothes.Services
+namespace SubUrbanClothes.Services.Contracts
 {
     public interface ICartService : IDisposable
     {
-        public void AddToCart(int id);
+        public void CreateCart(string cartId);
+        public void AddToCart(int id, string cartId);
         public void Dispose();
-        public string GetCartId();
-        public List<CartItem> GetCartItems();
+        public List<CartItem> GetCartItems(string cartId);
+        public decimal GetTotal(string cartId);
+        public string GetCartIdByUser(string userName);
     }
 }

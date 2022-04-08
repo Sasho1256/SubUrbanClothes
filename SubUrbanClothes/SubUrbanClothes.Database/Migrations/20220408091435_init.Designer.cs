@@ -12,7 +12,7 @@ using SubUrbanClothes.Database;
 namespace SubUrbanClothes.Database.Migrations
 {
     [DbContext(typeof(SubUrbanClothesDbContext))]
-    [Migration("20220306005127_init")]
+    [Migration("20220408091435_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -246,6 +246,21 @@ namespace SubUrbanClothes.Database.Migrations
                     b.ToTable("Brands");
                 });
 
+            modelBuilder.Entity("SubUrbanClothes.Database.Models.Cart", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ShoppingCarts");
+                });
+
             modelBuilder.Entity("SubUrbanClothes.Database.Models.CartItem", b =>
                 {
                     b.Property<string>("ItemId")
@@ -254,7 +269,7 @@ namespace SubUrbanClothes.Database.Migrations
 
                     b.Property<string>("CartId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
+                        .HasColumnType("nvarchar(450)")
                         .HasColumnName("Cart_Id");
 
                     b.Property<DateTime>("DateCreated")
@@ -268,6 +283,8 @@ namespace SubUrbanClothes.Database.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ItemId");
+
+                    b.HasIndex("CartId");
 
                     b.HasIndex("ProductId");
 
@@ -440,13 +457,30 @@ namespace SubUrbanClothes.Database.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("SubUrbanClothes.Database.Models.Cart", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("SubUrbanClothes.Database.Models.CartItem", b =>
                 {
+                    b.HasOne("SubUrbanClothes.Database.Models.Cart", "Cart")
+                        .WithMany()
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("SubUrbanClothes.Database.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Cart");
 
                     b.Navigation("Product");
                 });

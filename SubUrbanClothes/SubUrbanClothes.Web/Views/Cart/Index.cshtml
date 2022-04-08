@@ -5,7 +5,7 @@
 
 <div>
     <ul style="background-color:white; padding:10px; border-radius: 15px">
-        @if (Model == null)
+        @if (Model == null || Model.Count <= 0)
         {
             <h3>Cart is empty.</h3>
         }
