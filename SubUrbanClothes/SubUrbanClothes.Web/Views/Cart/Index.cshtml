@@ -3,25 +3,33 @@
     ViewData["Title"] = "Shopping Cart";
 }
 
-<div>
-    <ul style="background-color:white; padding:10px; border-radius: 15px">
-        @if (Model == null || Model.Count <= 0)
-        {
-            <h3>Cart is empty.</h3>
-        }
-        else
-        {
+<div style="margin-top: 6em; background-color:white; padding:8px; border-radius: 15px">
+    @if (Model == null || Model.Count <= 0)
+    {
+        <h3>Cart is empty.</h3>
+    }
+    else
+    {
+        <h1>@ViewData["Title"]</h1>
+        <form asp-controller="Cart" asp-action="UpdateCart" method="post">
             @for (int i = 0; i < Model.Count; i++)
             {
-                <li>@Model[i].Product.Name</li>
+                <div class="productDivs" id="@Model[i].ProductId" style="background-color:lightgray; padding:10px; margin: 8px; border-radius: 10px">
+                    <img src="@Model[i].Product.ThumbnailURL" style="width: 100px">
+                    <h5>@Model[i].Product.Name, @Model[i].Product.Color.Color_Name</h5>
+                    <h6>$@Model[i].Product.Price</h6>
+                    <input asp-for="@Model[i].Quantity" class="quantity" type="number">
+                    <input asp-for="@Model[i].ItemId" hidden>
+                </div>
             }
-        }
-    </ul>
+            <input type="submit" value="Update" class="btn btn-info btn-lg" style="margin-left:60px">
+        </form>
+    }
 </div>
 
 @*<ul style="background-color:white">
     @for (int i = 0; i < 10; i++)
     {
-        <li>asdasdasd</li>
+    <li>asdasdasd</li>
     }
-</ul>*@
+    </ul>*@

@@ -64,20 +64,41 @@ namespace SubUrbanClothes.Services
             _db.SaveChanges();
         }
 
+        public void UpdateCart(List<CartItem> newCartItems, string cartId)
+        {
+            List<CartItem> old = GetCartItems(cartId);
+            List<string> toRemove = new List<string>();
+            for (int i = 0; i < newCartItems.Count; i++)
+            {
+                if (newCartItems[i].Quantity<=0)
+                {
+                    var item = _db.ShoppingCartItems.First(sci => sci.ItemId == newCartItems[i].ItemId);
+                    _db.ShoppingCartItems.Remove(item);
+                }
+                else if (newCartItems[i].Quantity != old[i].Quantity)
+                {
+                    var a = _db.ShoppingCartItems.First(sci => sci.ItemId == newCartItems[i].ItemId);
+                    _db.ShoppingCartItems.First(sci => sci.ItemId == newCartItems[i].ItemId).Quantity = newCartItems[i].Quantity;
+                }
+            }
+
+            _db.SaveChanges();
+        }
+
         public void Dispose()
         {
-            if (_db != null)
-            {
-                _db.Dispose();
-                _db = null;
-            }
+            //if (_db != null)
+            //{
+            //    _db.Dispose();
+            //    _db = null;
+            //}
         }
 
         public List<CartItem> GetCartItems(string cartId)
         {
             ShoppingCartId = cartId;
 
-            return _db.ShoppingCartItems.Include(cartItem => cartItem.Product).Where(
+            return _db.ShoppingCartItems.Include(cartItem => cartItem.Product).Include(cartItem => cartItem.Product.Color).Where(
                 c => c.CartId == ShoppingCartId).ToList();
         }
 
@@ -97,6 +118,7 @@ namespace SubUrbanClothes.Services
 
         public string GetCartIdByUser(string userName)
         {
+
             return _db.ShoppingCarts.Where(c => c.User.UserName == userName).FirstOrDefault().Id ?? "";
         }
     }
