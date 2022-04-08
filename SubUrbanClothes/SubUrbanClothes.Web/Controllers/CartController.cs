@@ -30,6 +30,12 @@ namespace SubUrbanClothes.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult UpdateCart(List<CartItem> newCartItems)
+        {
+            shoppingCartService.UpdateCart(newCartItems, GetCartId());
+            return RedirectToAction("Index");
+        }
+
         //TODO:
         // extract to controller                                                                DONE
         // if user is logged, get cart from db                                                  DONE

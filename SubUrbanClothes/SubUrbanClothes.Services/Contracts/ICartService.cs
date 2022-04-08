@@ -12,6 +12,7 @@ namespace SubUrbanClothes.Services.Contracts
     {
         public void CreateCart(string cartId);
         public void AddToCart(int id, string cartId);
+        public void UpdateCart(List<CartItem> newCartItems, string cartId);
         public void Dispose();
         public List<CartItem> GetCartItems(string cartId);
         public decimal GetTotal(string cartId);
