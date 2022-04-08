@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SubUrbanClothes.Database;
 
@@ -11,9 +12,10 @@ using SubUrbanClothes.Database;
 namespace SubUrbanClothes.Database.Migrations
 {
     [DbContext(typeof(SubUrbanClothesDbContext))]
-    partial class SubUrbanClothesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220407162316_cart1")]
+    partial class cart1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

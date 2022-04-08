@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using SubUrbanClothes.Database;
 using SubUrbanClothes.Database.Models;
+using SubUrbanClothes.Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,21 +12,29 @@ namespace SubUrbanClothes.Services
     public class CartService : ICartService
     {
         public string ShoppingCartId { get; set; }
-        public const string CartSessionKey = "CartId";
 
         private SubUrbanClothesDbContext _db;
-        private IHttpContextAccessor contextAccessor;
 
-        public CartService(SubUrbanClothesDbContext _db, IHttpContextAccessor contextAccessor)
+        public CartService(SubUrbanClothesDbContext _db)
         {
             this._db = _db;
-            this.contextAccessor = contextAccessor;
         }
 
-        public void AddToCart(int id)
+        public void CreateCart(string cartId)
+        {
+            Cart cart = new Cart()
+            {
+                Id = cartId
+            };
+
+            _db.ShoppingCarts.Add(cart);
+            _db.SaveChanges();
+        }
+
+        public void AddToCart(int id, string cartId)
         {
             // Retrieve the product from the database.           
-            ShoppingCartId = GetCartId();
+            ShoppingCartId = cartId;
 
             var cartItem = _db.ShoppingCartItems.SingleOrDefault(
                 c => c.CartId == ShoppingCartId
@@ -63,40 +72,17 @@ namespace SubUrbanClothes.Services
             }
         }
 
-        public string GetCartId()
+        public List<CartItem> GetCartItems(string cartId)
         {
-            var session = contextAccessor.HttpContext.Session.GetString(CartSessionKey);
-            var user = contextAccessor.HttpContext.User.Identity.Name;
-            //var session = HttpContext.Current.Session[CartSessionKey];
-            //var user = HttpContext.Current.User.Identity.Name;
-
-            if (session == null)
-            {
-                if (!string.IsNullOrWhiteSpace(user))
-                {
-                    session = user;
-                }
-                else
-                {
-                    // Generate a new random GUID using System.Guid class.     
-                    Guid tempCartId = Guid.NewGuid();
-                    session = tempCartId.ToString();
-                }
-            }
-            return session.ToString();
-        }
-
-        public List<CartItem> GetCartItems()
-        {
-            ShoppingCartId = GetCartId();
+            ShoppingCartId = cartId;
 
             return _db.ShoppingCartItems.Where(
                 c => c.CartId == ShoppingCartId).ToList();
         }
 
-        public decimal GetTotal()
+        public decimal GetTotal(string cartId)
         {
-            ShoppingCartId = GetCartId();
+            ShoppingCartId = cartId;
             // Multiply product price by quantity of that product to get        
             // the current price for each of those products in the cart.  
             // Sum all product price totals to get the cart total.   
@@ -106,6 +92,11 @@ namespace SubUrbanClothes.Services
                                select (int?)cartItems.Quantity *
                                cartItems.Product.Price).Sum();
             return total ?? decimal.Zero;
+        }
+
+        public string GetCartIdByUser(string userId)
+        {
+            return _db.ShoppingCarts.Where(c => c.AspNetUser_Id == userId).FirstOrDefault().Id;
         }
     }
 }

@@ -22,6 +22,7 @@ namespace SubUrbanClothes.Database
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<CartItem> ShoppingCartItems { get; set; }
+        public DbSet<Cart> ShoppingCarts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

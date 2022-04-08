@@ -1,7 +1,7 @@
 ﻿using SubUrbanClothes.Database;
 using SubUrbanClothes.Database.Models;
 
-namespace SubUrbanClothes.Web.Services.Contracts
+namespace SubUrbanClothes.Services.Contracts
 {
     interface IBrandService
     {   

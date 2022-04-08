@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SubUrbanClothes.Database;
 using SubUrbanClothes.Services;
+using SubUrbanClothes.Services.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 
