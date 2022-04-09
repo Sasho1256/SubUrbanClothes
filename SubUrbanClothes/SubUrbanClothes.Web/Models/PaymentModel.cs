@@ -2,6 +2,7 @@
 {
     public class PaymentModel
     {
+        public string CartId { get; set; }
         public decimal Amount { get; set; }
 
         public string Company { get; set; }

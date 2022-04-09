@@ -72,6 +72,7 @@ namespace SubUrbanClothes.Web.Controllers
                 var price = items.Select(x => x.Price).Sum();
                 model = new PaymentModel()
                 {
+                    CartId = cartId,
                     ProductName = string.Join(" ", items.Select(x => x.Product.Name).ToList()),
                     Amount = (decimal)price,
                     Company = "SubUrbanClothes",
@@ -82,17 +83,16 @@ namespace SubUrbanClothes.Web.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        public IActionResult Checkout(string stripeToken, string stripeEmail)
+        [HttpPost("/Cart/Checkout/{cartId}")]
+        public IActionResult Checkout(string cartId, string stripeToken, string stripeEmail)
         {
-            var cartId = GetCartId();
-            
             if (model == null)
             {
                 var items = this.shoppingCartService.GetCartItems(cartId);
                 var price = items.Select(x => x.Price).Sum();
                 model = new PaymentModel()
                 {
+                    CartId = cartId,
                     ProductName = string.Join(" ", items.Select(x => x.Product.Name).ToList()),
                     Amount = price,
                     Company = "SubUrbanClothes",
