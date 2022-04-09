@@ -230,7 +230,7 @@ namespace SubUrbanClothes.Database.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<double>(type: "float", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Size = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ProductType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ThumbnailURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -271,6 +271,7 @@ namespace SubUrbanClothes.Database.Migrations
                     Item_Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Cart_Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Product_Id = table.Column<int>(type: "int", nullable: false)
                 },

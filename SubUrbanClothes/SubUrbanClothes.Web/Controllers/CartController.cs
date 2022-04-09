@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SubUrbanClothes.Database;
+using Stripe;
 using SubUrbanClothes.Database.Models;
 using SubUrbanClothes.Services.Contracts;
+using SubUrbanClothes.Web.Models;
 
 namespace SubUrbanClothes.Web.Controllers
 {
@@ -9,13 +10,15 @@ namespace SubUrbanClothes.Web.Controllers
     {
         public const string CartSessionKey = "CartId";
 
-        ICartService shoppingCartService;
-        private IHttpContextAccessor contextAccessor;
+        private PaymentModel model;
 
-        public CartController(ICartService shoppingCartService, IHttpContextAccessor contextAccessor)
+        private ICartService shoppingCartService;
+        private readonly ChargeService chargeService;
+
+        public CartController(ICartService shoppingCartService, ChargeService chargeService)
         {
             this.shoppingCartService = shoppingCartService;
-            this.contextAccessor = contextAccessor;
+            this.chargeService = chargeService;
         }
 
         public IActionResult Index()
@@ -24,7 +27,7 @@ namespace SubUrbanClothes.Web.Controllers
             return View(cartItems);
         }
 
-        public IActionResult AddToCart(Product product)
+        public IActionResult AddToCart(Database.Models.Product product)
         {
             shoppingCartService.AddToCart(product.Id, GetCartId());
             return RedirectToAction("Index");
@@ -36,17 +39,10 @@ namespace SubUrbanClothes.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        //TODO:
-        // extract to controller                                                                DONE
-        // if user is logged, get cart from db                                                  DONE
-        // if no user is logged, get cart from session                                          DONE
-        // if no user is logged and there's no cart in session, generate new cart in session    DONE
         public string GetCartId()
         {
             var session = this.HttpContext.Session.GetString(CartSessionKey);
             var userName = this.User.Identity.Name;
-            //var session = HttpContext.Current.Session[CartSessionKey];
-            //var user = HttpContext.Current.User.Identity.Name;
 
             if (!string.IsNullOrWhiteSpace(userName))
             {
@@ -63,6 +59,70 @@ namespace SubUrbanClothes.Web.Controllers
             }
 
             return this.HttpContext.Session.GetString(CartSessionKey);
+        }
+
+        [HttpGet]
+        public IActionResult Checkout()
+        {
+            var cartId = GetCartId();
+
+            if (model == null)
+            {
+                var items = this.shoppingCartService.GetCartItems(GetCartId());
+                var price = items.Select(x => x.Price).Sum();
+                model = new PaymentModel()
+                {
+                    CartId = cartId,
+                    ProductName = string.Join(" ", items.Select(x => x.Product.Name).ToList()),
+                    Amount = (decimal)price,
+                    Company = "SubUrbanClothes",
+                    Description = "",
+                    Label = $"Pay ${price}"
+                };
+            }
+            return View(model);
+        }
+
+        [HttpPost("/Cart/Checkout/{cartId}")]
+        public IActionResult Checkout(string cartId, string stripeToken, string stripeEmail)
+        {
+            if (model == null)
+            {
+                var items = this.shoppingCartService.GetCartItems(cartId);
+                var price = items.Select(x => x.Price).Sum();
+                model = new PaymentModel()
+                {
+                    CartId = cartId,
+                    ProductName = string.Join(" ", items.Select(x => x.Product.Name).ToList()),
+                    Amount = price,
+                    Company = "SubUrbanClothes",
+                    Description = "",
+                    Label = $"Pay ${price}"
+                };
+            }
+            Dictionary<string, string> Metadata = new Dictionary<string, string>();
+            Metadata.Add("Product", model.ProductName);
+            Metadata.Add("Quantity", "1");
+
+            var options = new ChargeCreateOptions
+            {
+                Amount = (long)(model.Amount * 100),
+                Currency = "USD",
+                Description = model.Description,
+                Source = stripeToken,
+                ReceiptEmail = stripeEmail,
+                Metadata = Metadata,
+            };
+
+            if (options.Amount > 0)
+            {
+                var charge = this.chargeService.Create(options);
+            }
+
+            shoppingCartService.TruncateCartItems(cartId);
+
+            //return RedirectToAction("Index", "Transaction");
+            return Redirect("/");
         }
     }
 }

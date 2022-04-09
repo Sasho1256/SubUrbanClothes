@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Stripe;
+using Stripe.Issuing;
 using SubUrbanClothes.Database;
 using SubUrbanClothes.Services;
 using SubUrbanClothes.Services.Contracts;
@@ -14,7 +16,15 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<SubUrbanClothesDbContext>();
+
+// Add services to the container.
+builder.Services.AddSingleton<ChargeService>(new ChargeService());
+builder.Services.AddSingleton<TransactionService>(new TransactionService());
+
 builder.Services.AddControllersWithViews();
+
+StripeConfiguration.SetApiKey(builder.Configuration["Stripe:TestSecretKey"]);
+//StripeConfiguration.ApiKey = builder.Configuration["Stripe:TestSecretKey"];
 
 builder.Services.AddHttpContextAccessor();
 
