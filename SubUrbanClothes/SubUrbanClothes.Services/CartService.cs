@@ -37,6 +37,8 @@ namespace SubUrbanClothes.Services
             // Retrieve the product from the database.           
             ShoppingCartId = cartId;
 
+            var product = _db.Products.SingleOrDefault(p => p.Id == id);
+
             var cartItem = _db.ShoppingCartItems.SingleOrDefault(
                 c => c.CartId == ShoppingCartId
                 && c.ProductId == id);
@@ -48,8 +50,9 @@ namespace SubUrbanClothes.Services
                     ItemId = Guid.NewGuid().ToString(),
                     ProductId = id,
                     CartId = ShoppingCartId,
-                    Product = _db.Products.SingleOrDefault(p => p.Id == id),
+                    Product = product,
                     Quantity = 1,
+                    Price = product.Price,
                     DateCreated = DateTime.Now
                 };
 
@@ -60,6 +63,7 @@ namespace SubUrbanClothes.Services
                 // If the item does exist in the cart,                  
                 // then add one to the quantity.                 
                 cartItem.Quantity++;
+                cartItem.Price += product.Price;
             }
             _db.SaveChanges();
         }
@@ -70,15 +74,18 @@ namespace SubUrbanClothes.Services
             List<string> toRemove = new List<string>();
             for (int i = 0; i < newCartItems.Count; i++)
             {
-                if (newCartItems[i].Quantity<=0)
+                if (newCartItems[i].Quantity <= 0)
                 {
                     var item = _db.ShoppingCartItems.First(sci => sci.ItemId == newCartItems[i].ItemId);
                     _db.ShoppingCartItems.Remove(item);
                 }
                 else if (newCartItems[i].Quantity != old[i].Quantity)
                 {
-                    var a = _db.ShoppingCartItems.First(sci => sci.ItemId == newCartItems[i].ItemId);
-                    _db.ShoppingCartItems.First(sci => sci.ItemId == newCartItems[i].ItemId).Quantity = newCartItems[i].Quantity;
+                    var newQuant = newCartItems[i].Quantity;
+                    var newPrice = newCartItems[i].Quantity * _db.Products.First(p => p.Id == newCartItems[i].ProductId).Price;
+
+                    _db.ShoppingCartItems.First(sci => sci.ItemId == newCartItems[i].ItemId).Quantity = newQuant;
+                    _db.ShoppingCartItems.First(sci => sci.ItemId == newCartItems[i].ItemId).Price = newPrice;
                 }
             }
 

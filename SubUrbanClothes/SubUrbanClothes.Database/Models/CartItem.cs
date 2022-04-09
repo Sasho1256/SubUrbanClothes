@@ -20,6 +20,8 @@ namespace SubUrbanClothes.Database.Models
 
         public int Quantity { get; set; }
 
+        public decimal Price { get; set; }
+
         public System.DateTime DateCreated { get; set; }
         
         [ForeignKey("Product")]

@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SubUrbanClothes.Database", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SubUrbanClothes.Services", "SubUrbanClothes.Services\SubUrbanClothes.Services.csproj", "{C9B382E1-3FB7-4F52-9D09-589F3A1F163F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubUrbanClothes.Infrastructure", "SubUrbanClothes.Infrastructure\SubUrbanClothes.Infrastructure.csproj", "{A735025E-739F-47B3-8E95-53F62D73A3E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SubUrbanClothes.Infrastructure", "SubUrbanClothes.Infrastructure\SubUrbanClothes.Infrastructure.csproj", "{A735025E-739F-47B3-8E95-53F62D73A3E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

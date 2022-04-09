@@ -11,7 +11,7 @@ namespace SubUrbanClothes.Database.Models
         public string Name { get; set; }
 
         [Range (0, int.MaxValue, ErrorMessage = "Price must be a positive number.")]
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         public string Size { get; set; }
         public string ProductType { get; set; }
 
