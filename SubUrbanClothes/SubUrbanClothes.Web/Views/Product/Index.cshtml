@@ -14,33 +14,33 @@
 </head>
 
 <body>
-    <div id="allDiv">
+    <div id="mainDiv">
         @{
             if (Model != null)
             {
                 <img src="@Model.ThumbnailURL" />
-                <div id="metadata">
-                    <h3>@Model.Name</h3>
-                    <p>
-                        Brand: @Model.Brand.Brand_Name<br>
-                        Color: @Model.Color.Color_Name<br>
-                        Gender: @Model.Gender.Gender_Name<br>
-                        Price: @Model.Price<br>
-                        Size: @Model.Size
-                    </p>
-                </div>
                 <div>
+                    <div id="metadataDiv">
+                        <h3>@Model.Name</h3>
+                        <p>
+                            Brand: @Model.Brand.Brand_Name<br>
+                            Color: @Model.Color.Color_Name<br>
+                            Gender: @Model.Gender.Gender_Name<br>
+                            Price: @Model.Price<br>
+                            Size: @Model.Size
+                        </p>
+                    </div>
+                    <div id="buttonDiv">
 
-                    <a id="btn_add" href="@Url.Action("AddToCart", "Cart", @Model)" class="btn btn-info btn-lg" style="margin-left:60px">
-                        <span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart
-                    </a>
+                        <a id="btn_add" href="@Url.Action("AddToCart", "Cart", @Model)" class="btn">
+                            Add To Cart
+                        </a>
 
-                    <a id="btn_add" href="@Url.Action("Index", "ProductList")" class="btn btn-info btn-lg" style="margin-left:60px">
-                        <span class="glyphicon glyphicon-eye-open"></span> Continue shopping
-                    </a>
-                    <br />
-                    <br />
+                        <a id="btn_shop" href="@Url.Action("Index", "ProductList")" class="btn">
+                            Continue shopping
+                        </a>
 
+                    </div>
                 </div>
             }
             else

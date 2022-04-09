@@ -3,7 +3,40 @@
     ViewData["Title"] = "Shopping Cart";
 }
 
-<div style="margin-top: 6em; background-color:white; padding:8px; border-radius: 15px">
+<style>
+    .productDivs {
+        background-color: lightgray;
+        padding: 10px;
+        margin: 8px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #mainDiv {
+        margin-top: 6em;
+        background-color: white;
+        padding: 12px;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #submitDiv {
+        text-align: center;
+    }
+
+    .subProductDivs{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+</style>
+
+<div id="mainDiv">
     @if (Model == null || Model.Count <= 0)
     {
         <h3>Cart is empty.</h3>
@@ -14,22 +47,22 @@
         <form asp-controller="Cart" asp-action="UpdateCart" method="post">
             @for (int i = 0; i < Model.Count; i++)
             {
-                <div class="productDivs" id="@Model[i].ProductId" style="background-color:lightgray; padding:10px; margin: 8px; border-radius: 10px">
-                    <img src="@Model[i].Product.ThumbnailURL" style="width: 100px">
-                    <h5>@Model[i].Product.Name, @Model[i].Product.Color.Color_Name</h5>
-                    <h6>$@Model[i].Product.Price</h6>
-                    <input asp-for="@Model[i].Quantity" class="quantity" type="number">
-                    <input asp-for="@Model[i].ItemId" hidden>
+                <div class="productDivs">
+                    <div class="subProductDivs">
+                        <img src="@Model[i].Product.ThumbnailURL" style="height: 100px; width: 100px; margin-right: 2em; border-radius:10px">
+                        <h5>@Model[i].Product.Name, @Model[i].Product.Color.Color_Name, @Model[i].Product.Size</h5>
+                    </div>
+                    <div class="subProductDivs">
+                        <h6 style="margin-right: 2em">$@Model[i].Product.Price</h6>
+                        <input asp-for="@Model[i].Quantity" class="quantity" type="number" style="width:70px">
+                        <input asp-for="@Model[i].ItemId" hidden>
+                    </div>
                 </div>
             }
-            <input type="submit" value="Update" class="btn btn-info btn-lg" style="margin-left:60px">
+            <div id="submitDiv" style="margin: auto;">
+                <input type="submit" value="Update" class="btn btn-lg" style="background-color: #2286d8; color: white">
+                <a class="btn btn-lg" style="background-color: #2286d8; color: white">Checkout</a>
+            </div>
         </form>
     }
 </div>
-
-@*<ul style="background-color:white">
-    @for (int i = 0; i < 10; i++)
-    {
-    <li>asdasdasd</li>
-    }
-    </ul>*@
