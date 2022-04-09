@@ -92,13 +92,23 @@ namespace SubUrbanClothes.Services
             _db.SaveChanges();
         }
 
-        public void Dispose()
+        //public void Dispose()
+        //{
+        //    //if (_db != null)
+        //    //{
+        //    //    _db.Dispose();
+        //    //    _db = null;
+        //    //}
+        //}
+
+        public void TruncateCartItems(string cartId)
         {
-            //if (_db != null)
-            //{
-            //    _db.Dispose();
-            //    _db = null;
-            //}
+            var items = GetCartItems(cartId);
+            foreach (var item in items)
+            {
+                item.Quantity = 0;
+            }
+            UpdateCart(items, cartId);
         }
 
         public List<CartItem> GetCartItems(string cartId)

@@ -28,7 +28,7 @@
         text-align: center;
     }
 
-    .subProductDivs{
+    .subProductDivs {
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
@@ -39,7 +39,9 @@
 <div id="mainDiv">
     @if (Model == null || Model.Count <= 0)
     {
-        <h3>Cart is empty.</h3>
+        <div style="margin:auto; padding:10px; border-radius:10px; background-color: white; text-align:center">
+            <h2>Cart is empty.</h2>
+        </div>
     }
     else
     {

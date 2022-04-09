@@ -64,6 +64,8 @@ namespace SubUrbanClothes.Web.Controllers
         [HttpGet]
         public IActionResult Checkout()
         {
+            var cartId = GetCartId();
+
             if (model == null)
             {
                 var items = this.shoppingCartService.GetCartItems(GetCartId());
@@ -83,14 +85,16 @@ namespace SubUrbanClothes.Web.Controllers
         [HttpPost]
         public IActionResult Checkout(string stripeToken, string stripeEmail)
         {
+            var cartId = GetCartId();
+            
             if (model == null)
             {
-                var items = this.shoppingCartService.GetCartItems(GetCartId());
+                var items = this.shoppingCartService.GetCartItems(cartId);
                 var price = items.Select(x => x.Price).Sum();
                 model = new PaymentModel()
                 {
                     ProductName = string.Join(" ", items.Select(x => x.Product.Name).ToList()),
-                    Amount = (decimal)price,
+                    Amount = price,
                     Company = "SubUrbanClothes",
                     Description = "",
                     Label = $"Pay ${price}"
@@ -107,13 +111,18 @@ namespace SubUrbanClothes.Web.Controllers
                 Description = model.Description,
                 Source = stripeToken,
                 ReceiptEmail = stripeEmail,
-                Metadata = Metadata
+                Metadata = Metadata,
             };
 
-            var charge = this.chargeService.Create(options);
+            if (options.Amount > 0)
+            {
+                var charge = this.chargeService.Create(options);
+            }
 
-            return RedirectToAction("Index", "Transaction");
-            //return RedirectToAction("/");
+            shoppingCartService.TruncateCartItems(cartId);
+
+            //return RedirectToAction("Index", "Transaction");
+            return Redirect("/");
         }
     }
 }
