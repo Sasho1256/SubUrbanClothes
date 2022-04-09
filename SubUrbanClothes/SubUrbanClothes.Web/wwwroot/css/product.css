@@ -1,4 +1,4 @@
-﻿#allDiv {
+﻿#mainDiv {
     margin: auto;
     margin-top: 6em;
     background-color: #e6e6e6;
@@ -6,11 +6,16 @@
     padding: 1em;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     width: 40em;
 }
 
-#allDiv img{
-    width:20em;
+    #mainDiv img {
+        width: 20em;
+        border-radius:10px;
+    }
 
+#btn_add, #btn_shop {
+    background-color: #2286d8;
+    color: white
 }
