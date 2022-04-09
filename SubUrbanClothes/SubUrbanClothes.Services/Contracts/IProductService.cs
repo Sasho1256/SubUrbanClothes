@@ -7,14 +7,11 @@ using SubUrbanClothes.Database.Models;
 
 namespace SubUrbanClothes.Services.Contracts
 {
-    interface IProductService
+    public interface IProductService
     {
-        List<Product> GetAllProducts();
-        Product ProductInfo(Product product);
-        Product ProductInfoInCart(Product product);
-        void Create(Product product);
-        void Edit(Product updatedProduct, string productId);
-        void Delete(string productId);
-        Product GetById(string productId);
+        void Create(Product product);                       //TODO!!!
+        void Edit(Product updatedProduct, int productId);   //TODO!!!
+        void Delete(int productId);                         //DONE
+        Product GetById(int productId);                     //DONE
     }
 }

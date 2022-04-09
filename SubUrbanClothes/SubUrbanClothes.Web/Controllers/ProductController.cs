@@ -2,20 +2,28 @@
 using Microsoft.EntityFrameworkCore;
 using SubUrbanClothes.Database;
 using SubUrbanClothes.Database.Models;
+using SubUrbanClothes.Services.Contracts;
 
 namespace SubUrbanClothes.Web.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly SubUrbanClothesDbContext db;
+        private IProductService productService;
 
-        public ProductController(SubUrbanClothesDbContext db)
+        public ProductController(IProductService productService)
         {
-            this.db = db;
+            this.productService = productService;
         }
+
         public IActionResult Index(int id)
         {
-            return View(db.Products.Include(product => product.Brand).Include(product => product.Color).Include(product => product.Category).Include(product => product.Gender).SingleOrDefault(x => x.Id == id));
+            return View(productService.GetById(id));
+        }
+
+        public IActionResult Delete(int id)
+        {
+            productService.Delete(id);
+            return Redirect("/");
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using SubUrbanClothes.Database;
 using SubUrbanClothes.Database.Models;
 using SubUrbanClothes.Services.Contracts;
@@ -15,25 +16,6 @@ public class ProductService : IProductService
     public ProductService(SubUrbanClothesDbContext database)
     {
         this.database = database;
-    }
-
-    public List<Product> GetAllProducts()
-    {
-        return database.Products.ToList();
-    }
-    public Product ProductInfo(Product product)
-    {
-        product.Brand = database.Brands.FirstOrDefault(g => g.Id == product.Brand_Id);
-        product.Color = database.Colors.FirstOrDefault(d => d.Id == product.Color_Id);
-
-        return product;
-    }
-    public Product ProductInfoInCart(Product product)
-    {
-        product.Brand = database.Brands.FirstOrDefault(g => g.Id == product.Brand_Id);
-        product.Color = database.Colors.FirstOrDefault(d => d.Id == product.Color_Id);
-
-        return product;
     }
 
     public void Create(Product product)
@@ -51,7 +33,7 @@ public class ProductService : IProductService
         database.SaveChanges();
     }
 
-    public void Edit(Product updatedProduct, string productId)
+    public void Edit(Product updatedProduct, int productId)
     {
         Product product = GetById(productId);
 
@@ -75,19 +57,17 @@ public class ProductService : IProductService
         database.SaveChanges();
     }
 
-    public void Delete(string productId)
+    public void Delete(int productId)
     {
         Product productToDelete = GetById(productId);
-        List<Product> productsToDelete = database.Products.Where(fu => fu.Brand_Id == productToDelete.Id).ToList();
 
-        database.Products.RemoveRange(productsToDelete);
         database.Products.Remove(productToDelete);
         database.SaveChanges();
     }
 
-    public Product GetById(string productId)
+    public Product GetById(int productId)
     {
-        Product product = database.Products.FirstOrDefault(f => f.Id == int.Parse(productId));
+        Product product = database.Products.Include(product => product.Brand).Include(product => product.Color).Include(product => product.Category).Include(product => product.Gender).SingleOrDefault(x => x.Id == productId);
         return product;
     }
 }

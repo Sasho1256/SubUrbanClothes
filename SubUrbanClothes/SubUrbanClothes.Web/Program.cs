@@ -29,6 +29,7 @@ StripeConfiguration.SetApiKey(builder.Configuration["Stripe:TestSecretKey"]);
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddTransient<ICartService, CartService>();
+builder.Services.AddTransient<IProductService, ProductService>();
 
 builder.Services.AddDistributedMemoryCache();
 
