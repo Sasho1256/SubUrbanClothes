@@ -8,21 +8,21 @@
 
 	<form asp-controller="Product" asp-action="Edit" method="post">
 		<label>Name</label> <br>
-		<input name="name" value="@Model.product.Name" required> <br>
+		<input name="name" value="@Model.Name" required> <br>
 
 		<label>Price</label> <br>
-		<input type="number" min="0" name="price" value="@Model.product.Price" required> <br>
+		<input type="number" min="0" name="price" value="@Model.Price" required> <br>
 
 		<label>Brand</label> <br>
-		<input name="brand" value="@Model.product.Brand" required> <br>
+		<input name="brand" value="@Model.Brand" required> <br>
 		
 		<label>Color</label> <br>
-		<input name="color" value="@Model.product.Color" required> <br>
+		<input name="color" value="@Model.Color" required> <br>
 
 		<label>Size</label> <br>
-		<input name="size" value="@Model.product.Size" required> <br>
+		<input name="size" value="@Model.Size" required> <br>
 
-		<input name="productId" value="@Model.product.Id" hidden>
+		<input name="productId" value="@Model" hidden>
 
 		<br><br>
 
