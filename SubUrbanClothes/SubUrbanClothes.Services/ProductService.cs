@@ -78,36 +78,85 @@ public class ProductService : IProductService
         database.SaveChanges();
     }
 
-    public void Edit(Product updatedProduct, int productId)
+    public void Update(Product newProduct, string brandName, string colorName, string caregoryName, string genderName, int productId)
     {
         Product product = GetById(productId);
 
-        if (string.IsNullOrWhiteSpace(updatedProduct.Name) || string.IsNullOrEmpty(updatedProduct.Name))
+        if (product != null)
         {
-            throw new ArgumentException("Invalid input for name.");
-        }
-        if (string.IsNullOrWhiteSpace(updatedProduct.ProductType) || string.IsNullOrEmpty(updatedProduct.ProductType))
-        {
-            throw new ArgumentException("Invalid input for category.");
-        }
+            product.Name = newProduct.Name;
+            product.Price = newProduct.Price;
+            product.Size = newProduct.Size;
+            product.ProductType = newProduct.ProductType;
+            product.ThumbnailURL = newProduct.ThumbnailURL;
 
-        product.Name = updatedProduct.Name;
-        product.Price = updatedProduct.Price;
-        product.Color = updatedProduct.Color;
-        product.Brand = updatedProduct.Brand;
-        product.Category = updatedProduct.Category;
-        product.Size = updatedProduct.Size;
+            var brand = database.Brands.FirstOrDefault(b => b.Brand_Name == brandName);
+            var color = database.Colors.FirstOrDefault(c => c.Color_Name == colorName);
+            var caregory = database.Categories.FirstOrDefault(ca => ca.Category_Name == caregoryName);
+            var gender = database.Genders.FirstOrDefault(g => g.Gender_Name == genderName);
 
-        database.Products.Update(product);
-        database.SaveChanges();
+            if (brand == null)
+            {
+                database.Brands.Add(new Brand() { Brand_Name = brandName });
+                database.SaveChanges();
+                brand = database.Brands.FirstOrDefault(b => b.Brand_Name == brandName);
+                product.Brand_Id = brand.Id;
+            }
+            else
+            {
+                product.Brand_Id = brand.Id;
+            }
+
+            if (color == null)
+            {
+                database.Colors.Add(new Color() { Color_Name = colorName });
+                database.SaveChanges();
+                color = database.Colors.FirstOrDefault(c => c.Color_Name == colorName);
+                product.Color_Id = color.Id;
+            }
+            else
+            {
+                product.Color_Id = color.Id;
+            }
+
+            if (caregory == null)
+            {
+                database.Categories.Add(new Category() { Category_Name = caregoryName });
+                database.SaveChanges();
+                caregory = database.Categories.First(ca => ca.Category_Name == caregoryName);
+                product.Category_Id = caregory.Id;
+            }
+            else
+            {
+                product.Category_Id = caregory.Id;
+            }
+
+            if (gender == null)
+            {
+                database.Genders.Add(new Gender() { Gender_Name = genderName });
+                database.SaveChanges();
+                gender = database.Genders.First(g => g.Gender_Name == genderName);
+                product.Gender_Id = gender.Id;
+            }
+            else
+            {
+                product.Gender_Id = gender.Id;
+            }
+
+            database.Products.Update(product);
+            database.SaveChanges();
+        }
     }
 
     public void Delete(int productId)
     {
         Product productToDelete = GetById(productId);
 
-        database.Products.Remove(productToDelete);
-        database.SaveChanges();
+        if (productToDelete != null)
+        {
+            database.Products.Remove(productToDelete);
+            database.SaveChanges();
+        }
     }
 
     public Product GetById(int productId)

@@ -31,12 +31,49 @@ namespace SubUrbanClothes.Web.Controllers
         public IActionResult Create(ProductViewModel productVM)
         {
             var product = ConvertVMToProduct(productVM);
-            var brand = productVM.Brand; 
-            var color = productVM.Color; 
-            var caregory = productVM.Category; 
-            var gender = productVM.Gender; 
+            var brand = productVM.Brand;
+            var color = productVM.Color;
+            var caregory = productVM.Category;
+            var gender = productVM.Gender;
 
             productService.Create(product, brand, color, caregory, gender);
+            return Redirect("/");
+        }
+
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+            var product = productService.GetById(id);
+            if (product != null)
+            {
+                ProductViewModel productVM = new ProductViewModel()
+                {
+                    ProductId = product.Id,
+                    Name = product.Name,
+                    Price = product.Price,
+                    Size = product.Size,
+                    ProductType = product.ProductType,
+                    ThumbnailURL = product.ThumbnailURL,
+                    Brand = product.Brand.Brand_Name,
+                    Color = product.Color.Color_Name,
+                    Category = product.Category.Category_Name,
+                    Gender = product.Gender.Gender_Name,
+                };
+                return View(productVM);
+            }
+            return Redirect("/");
+        }
+        [HttpPost]
+        public IActionResult Update(ProductViewModel productVM)
+        {
+            var product = ConvertVMToProduct(productVM);
+            var productId = productVM.ProductId;
+            var brand = productVM.Brand;
+            var color = productVM.Color;
+            var caregory = productVM.Category;
+            var gender = productVM.Gender;
+
+            productService.Update(product, brand, color, caregory, gender, productId);
             return Redirect("/");
         }
 
