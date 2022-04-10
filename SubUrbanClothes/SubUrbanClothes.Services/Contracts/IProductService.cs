@@ -9,9 +9,9 @@ namespace SubUrbanClothes.Services.Contracts
 {
     public interface IProductService
     {
-        void Create(Product product);                       //TODO!!!
-        void Edit(Product updatedProduct, int productId);   //TODO!!!
-        void Delete(int productId);                         //DONE
-        Product GetById(int productId);                     //DONE
+        void Create(Product product, string brandName, string colorName, string caregoryName, string genderName);   //TODO!!!
+        void Edit(Product updatedProduct, int productId);                                                           //TODO!!!
+        void Delete(int productId);                                                                                 //DONE
+        Product GetById(int productId);                                                                             //DONE
     }
 }

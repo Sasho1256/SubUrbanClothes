@@ -1,30 +1,46 @@
 ﻿@model ProductViewModel
 @{
-	ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create";
 }
 
-<div class="text-center">
-	<h1 class="display-4">Create</h1>
+    <div style="margin:auto; background-color: white; padding: 10px; border-radius: 20px; margin-top:6em; width: 17em; text-align:center">
+        <h1>@ViewData["Title"]</h1>
 
-	<form asp-controller="Product" asp-action="Create" method="post">
-		<label>Name</label> <br>
-		<input name="name" required> <br>
+        <form asp-controller="Product" asp-action="Create" method="post">
+            <label>Name</label> <br>
+            <input name="Name" required> <br>
 
-		<label>Price</label> <br>
-		<input type="number" min="0" name="price" required> <br>
+            <label>Price</label> <br>
+            <input type="number" step="0.01" min="0" name="Price" required> <br>
 
-		<label>Brand</label> <br>
-		<input name="brand" required> <br>
+            <label>Size</label><br>
+            <input name="Size" required> <br>
 
-		<label>Color</label> <br>
-		<input name="color" required> <br>
+            <label>Product Type</label><br>
+            <input name="ProductType" required> <br>
 
-		<label>Size</label><br>
-		<input type="number" min="36" max="44" name="size" required> <br>
+            <label>Thumbnail URL</label><br>
+            <input name="ThumbnailURL" required> <br>
 
-		<br>
-		<br><br>
 
-		<button>Create</button>
-	</form>
-</div>
+            <label>Brand</label> <br>
+            <input name="Brand" required> <br>
+
+            <label>Color</label> <br>
+            <input name="Color" required> <br>
+
+            <label>Category</label> <br>
+            <input name="Category" required> <br>
+
+            <label>Gender</label> <br>
+            <select name="Gender" id="Gender">
+                <option value="Men" selected>Men</option>
+                <option value="Women">Women</option>
+                <option value="Children">Children</option>
+            </select>
+
+            <br>
+            <br>
+            <input type="submit" value="Create" class="btn btn-lg" style="background-color: #2286d8; color: white">
+        </form>
+    </div>

@@ -18,16 +18,61 @@ public class ProductService : IProductService
         this.database = database;
     }
 
-    public void Create(Product product)
+    public void Create(Product product, string brandName, string colorName, string caregoryName, string genderName)
     {
-        if (string.IsNullOrWhiteSpace(product.Name) || string.IsNullOrEmpty(product.Name))
+        var brand = database.Brands.FirstOrDefault(b => b.Brand_Name == brandName);
+        var color = database.Colors.FirstOrDefault(c => c.Color_Name == colorName);
+        var caregory = database.Categories.FirstOrDefault(ca => ca.Category_Name == caregoryName);
+        var gender = database.Genders.FirstOrDefault(g => g.Gender_Name == genderName);
+
+        if (brand == null)
         {
-            throw new ArgumentException("Invalid input for name.");
+            database.Brands.Add(new Brand() { Brand_Name = brandName });
+            database.SaveChanges();
+            brand = database.Brands.FirstOrDefault(b => b.Brand_Name == brandName);
+            product.Brand_Id = brand.Id;
         }
-        if (string.IsNullOrWhiteSpace(product.ProductType) || string.IsNullOrEmpty(product.ProductType))
+        else
         {
-            throw new ArgumentException("Invalid input for category.");
+            product.Brand_Id = brand.Id;
         }
+
+        if (color == null)
+        {
+            database.Colors.Add(new Color() { Color_Name = colorName });
+            database.SaveChanges();
+            color = database.Colors.FirstOrDefault(c => c.Color_Name == colorName);
+            product.Color_Id = color.Id;
+        }
+        else
+        {
+            product.Color_Id = color.Id;
+        }
+
+        if (caregory == null)
+        {
+            database.Categories.Add(new Category() { Category_Name = caregoryName });
+            database.SaveChanges();
+            caregory = database.Categories.First(ca => ca.Category_Name == caregoryName);
+            product.Category_Id = caregory.Id;
+        }
+        else
+        {
+            product.Category_Id = caregory.Id;
+        }
+
+        if (gender == null)
+        {
+            database.Genders.Add(new Gender() { Gender_Name = genderName });
+            database.SaveChanges();
+            gender = database.Genders.First(g => g.Gender_Name == genderName);
+            product.Gender_Id = gender.Id;
+        }
+        else
+        {
+            product.Gender_Id = gender.Id;
+        }
+
 
         database.Products.Add(product);
         database.SaveChanges();

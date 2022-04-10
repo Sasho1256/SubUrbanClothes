@@ -4,29 +4,32 @@ namespace SubUrbanClothes.Web.Models
 {
     public class ProductViewModel
     {
-        public Product product { get; set; }
-        public List<Brand> Brands { get; set; }
-        public List<Category> Categories { get; set; }
-        public List<Color> Colors { get; set; }
-
         public ProductViewModel()
         {
 
         }
-
-        public ProductViewModel(List<Brand> brands, List<Category> categories, List<Color> colors)
+        public ProductViewModel(string name, decimal price, string size, string productType, string thumbnailURL, string brand, string color, string category, string gender)
         {
-            this.Brands = brands;
-            this.Categories = categories;
-            this.Colors = colors;
+            Name = name;
+            Price = price;
+            Size = size;
+            ProductType = productType;
+            ThumbnailURL = thumbnailURL;
+            Brand = brand;
+            Color = color;
+            Category = category;
+            Gender = gender;
         }
 
-        public ProductViewModel(Product product, List<Brand> brands, List<Category> categories, List<Color> colors)
-        {
-            this.product = product;
-            this.Brands = brands;
-            this.Categories = categories;
-            this.Colors = colors;
-        }
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+        public string Size { get; set; }
+        public string ProductType { get; set; }
+        public string ThumbnailURL { get; set; }
+        public string Brand { get; set; }
+        public string Color { get; set; }
+        public string Category { get; set; }
+        public string Gender { get; set; }
+
     }
 }
