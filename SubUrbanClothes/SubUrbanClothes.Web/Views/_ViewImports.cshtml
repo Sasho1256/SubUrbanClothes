@@ -1,4 +1,8 @@
 ﻿@using SubUrbanClothes.Web
 @using SubUrbanClothes.Web.Models
 @using SubUrbanClothes.Database.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

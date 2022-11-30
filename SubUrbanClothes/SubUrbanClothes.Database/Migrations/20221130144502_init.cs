@@ -292,6 +292,16 @@ namespace SubUrbanClothes.Database.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "1dd695e8-1094-44c2-b6cd-2f09f7b26305", "4d8d619c-402b-4237-9040-242c4adc09ac", "administrator", "ADMINISTRATOR" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "4d60ad11-a021-4b28-8840-9a1a45c09d68", "55947966-6469-42d5-b552-a3cd8411d59a", "client", "CLIENT" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",

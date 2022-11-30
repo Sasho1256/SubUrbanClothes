@@ -12,7 +12,7 @@ using SubUrbanClothes.Database;
 namespace SubUrbanClothes.Database.Migrations
 {
     [DbContext(typeof(SubUrbanClothesDbContext))]
-    [Migration("20220409114633_init")]
+    [Migration("20221130144502_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,6 +49,22 @@ namespace SubUrbanClothes.Database.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1dd695e8-1094-44c2-b6cd-2f09f7b26305",
+                            ConcurrencyStamp = "4d8d619c-402b-4237-9040-242c4adc09ac",
+                            Name = "administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        },
+                        new
+                        {
+                            Id = "4d60ad11-a021-4b28-8840-9a1a45c09d68",
+                            ConcurrencyStamp = "55947966-6469-42d5-b552-a3cd8411d59a",
+                            Name = "client",
+                            NormalizedName = "CLIENT"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

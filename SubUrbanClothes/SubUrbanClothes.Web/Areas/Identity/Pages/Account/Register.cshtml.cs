@@ -25,6 +25,8 @@ namespace SubUrbanClothes.Web.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {
+        private static string defaultRoleName = "client";
+
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IUserStore<IdentityUser> _userStore;
@@ -135,6 +137,8 @@ namespace SubUrbanClothes.Web.Areas.Identity.Pages.Account
                     // add cart to dbContext    DONE
                     // db save changes          DONE
 
+                    CreateRole(userId);
+
                     Cart cart = new Cart()
                     {
                         Id = Guid.NewGuid().ToString(),
@@ -175,6 +179,29 @@ namespace SubUrbanClothes.Web.Areas.Identity.Pages.Account
             // If we got this far, something failed, redisplay form
             return Page();
         }
+        private void CreateRole(string userId)
+        {
+            var role = _db.Roles.FirstOrDefault(r => r.Name == defaultRoleName);
+
+            if (role == null)
+            {
+                role = new IdentityRole()
+                {
+                    Name = defaultRoleName,
+                    NormalizedName = defaultRoleName.ToUpper(),
+                };
+                _db.Roles.Add(role);
+            }
+
+            _db.UserRoles.Add(new IdentityUserRole<string>()
+            {
+                RoleId = role.Id,
+                UserId = userId
+            });
+
+            _db.SaveChanges();
+        }
+
 
         private IdentityUser CreateUser()
         {

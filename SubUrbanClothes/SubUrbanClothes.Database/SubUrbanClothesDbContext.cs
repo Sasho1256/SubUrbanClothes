@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SubUrbanClothes.Database.Models;
 
@@ -6,6 +7,8 @@ namespace SubUrbanClothes.Database
 {
     public class SubUrbanClothesDbContext : IdentityDbContext
     {
+        private const string role1 = "administrator";
+        private const string role2 = "client";
         public SubUrbanClothesDbContext(DbContextOptions<SubUrbanClothesDbContext> options)
             : base(options)
         {
@@ -43,6 +46,19 @@ namespace SubUrbanClothes.Database
             builder.Entity<Color>()
                 .HasIndex(x => x.Color_Name)
                 .IsUnique();
+
+            builder.Entity<IdentityRole>().HasData(
+                new IdentityRole()
+                {
+                    Name = role1,
+                    NormalizedName = role1.ToUpper(),
+                },
+                new IdentityRole()
+                {
+                    Name = role2,
+                    NormalizedName = role2.ToUpper(),
+                }
+            );
         }
     }
 }

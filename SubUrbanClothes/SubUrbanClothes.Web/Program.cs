@@ -15,6 +15,7 @@ builder.Services.AddDbContext<SubUrbanClothesDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<SubUrbanClothesDbContext>();
 
 // Add services to the container.

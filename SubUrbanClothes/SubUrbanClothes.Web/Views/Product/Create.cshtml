@@ -2,7 +2,8 @@
 @{
     ViewData["Title"] = "Create";
 }
-
+@if (SignInManager.IsSignedIn(User) && await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "administrator"))
+{
     <div style="margin:auto; background-color: white; padding: 10px; border-radius: 20px; margin-top:6em; width: 17em; text-align:center">
         <h1>@ViewData["Title"]</h1>
 
@@ -44,3 +45,4 @@
             <input type="submit" value="Create" class="btn btn-lg" style="background-color: #2286d8; color: white">
         </form>
     </div>
+}
